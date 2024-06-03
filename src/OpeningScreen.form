@@ -2,9 +2,11 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="OpeningScreen">
   <grid id="27dc6" binding="startPanel" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="583" height="400"/>
+      <xy x="20" y="20" width="1192" height="798"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-16777216"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="1d593" binding="openingScreen" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -12,23 +14,38 @@
         <constraints>
           <card name="Card1"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-16777216"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="dc257" class="javax.swing.JButton" binding="loginButton" default-binding="true">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="500" height="70"/>
+              </grid>
             </constraints>
             <properties>
-              <font/>
+              <background color="-394241"/>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16777216"/>
+              <margin top="20" left="20" bottom="20" right="20"/>
               <text value="Login"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="3dfac" class="javax.swing.JButton" binding="registerButton" default-binding="true">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="500" height="70"/>
+              </grid>
             </constraints>
             <properties>
+              <background color="-394241"/>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16777216"/>
+              <margin top="20" left="20" bottom="20" right="20"/>
               <text value="Register"/>
             </properties>
           </component>
@@ -42,7 +59,8 @@
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font/>
+              <font name="Courier New" size="65"/>
+              <foreground color="-16718561"/>
               <text value="MnM Uni Planner"/>
             </properties>
           </component>
@@ -63,12 +81,13 @@
           </vspacer>
         </children>
       </grid>
-      <grid id="7594e" binding="loginScreen" layout-manager="GridLayoutManager" row-count="8" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="7594e" binding="loginScreen" layout-manager="GridLayoutManager" row-count="9" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <card name="Card2"/>
         </constraints>
         <properties>
+          <background color="-16777216"/>
           <visible value="false"/>
         </properties>
         <border type="none"/>
@@ -78,6 +97,8 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Courier New" size="65"/>
+              <foreground color="-16718561"/>
               <text value="Login"/>
             </properties>
           </component>
@@ -89,6 +110,7 @@
             </constraints>
             <properties>
               <editable value="true"/>
+              <font name="Courier New" size="36"/>
               <text value=""/>
             </properties>
           </component>
@@ -97,6 +119,8 @@
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16718561"/>
               <text value="Enter Username:"/>
             </properties>
           </component>
@@ -105,6 +129,8 @@
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16718561"/>
               <text value="Enter Password:"/>
             </properties>
           </component>
@@ -125,14 +151,17 @@
           </vspacer>
           <vspacer id="e8055">
             <constraints>
-              <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
           <component id="1ad44" class="javax.swing.JButton" binding="toRegisterButton">
             <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-16777216"/>
+              <font name="Courier New" size="22"/>
+              <foreground color="-16718561"/>
               <text value="Haven't made an account yet? Click here to register."/>
             </properties>
           </component>
@@ -142,136 +171,229 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Courier New" size="36"/>
+            </properties>
           </component>
           <component id="d261c" class="javax.swing.JButton" binding="loginToMenuButton">
             <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-394241"/>
+              <font name="Courier New" size="36"/>
               <text value="Login"/>
             </properties>
           </component>
+          <vspacer id="8fa8b">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
         </children>
       </grid>
-      <grid id="317" binding="registerScreen" layout-manager="GridLayoutManager" row-count="12" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <vspacer id="6cd88">
+        <constraints>
+          <card name="Card4"/>
+        </constraints>
+      </vspacer>
+      <grid id="e5532" binding="registerScreen" layout-manager="GridLayoutManager" row-count="21" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <card name="Card3"/>
         </constraints>
         <properties>
-          <visible value="true"/>
+          <background color="-16777216"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="bd01b" class="javax.swing.JLabel">
+          <component id="4083c" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Courier New" size="65"/>
+              <foreground color="-16718561"/>
               <text value="Register"/>
             </properties>
           </component>
-          <component id="9efb7" class="javax.swing.JLabel">
+          <component id="45971" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Enter your first name/nickname:"/>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16718561"/>
+              <text value="Enter first name/nickname:"/>
             </properties>
           </component>
-          <component id="26e47" class="javax.swing.JTextField" binding="nameField">
+          <component id="15ca7" class="javax.swing.JTextField" binding="nameField">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
-          </component>
-          <component id="32d9a" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
             <properties>
-              <text value="Enter a username (no spaces or special characters):"/>
+              <font name="Courier New" size="36"/>
             </properties>
           </component>
-          <component id="91e3b" class="javax.swing.JTextField" binding="createUsernameField">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="5302d" class="javax.swing.JLabel">
+          <component id="f7efb" class="javax.swing.JLabel">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Enter a password (between 6-12 characters):"/>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16718561"/>
+              <text value="Create username:"/>
             </properties>
           </component>
-          <component id="5858d" class="javax.swing.JLabel">
+          <component id="a8207" class="javax.swing.JLabel">
             <constraints>
-              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Confirm your password:"/>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16718561"/>
+              <text value="Create password:"/>
             </properties>
           </component>
-          <component id="88c56" class="javax.swing.JPasswordField" binding="createPasswordField">
+          <component id="64aec" class="javax.swing.JLabel">
             <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="43cc8" class="javax.swing.JPasswordField" binding="confirmPasswordField">
-            <constraints>
-              <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="e3d69" class="javax.swing.JButton" binding="createAccountButton" default-binding="true">
-            <constraints>
-              <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Courier New" size="36"/>
+              <foreground color="-16718561"/>
+              <text value="Confirm password:"/>
+            </properties>
+          </component>
+          <component id="18875" class="javax.swing.JButton" binding="createAccountButton">
+            <constraints>
+              <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <enabled value="true"/>
+              <font name="Courier New" size="36"/>
               <text value="Create Account"/>
             </properties>
           </component>
-          <vspacer id="caa78">
+          <component id="f0af9" class="javax.swing.JButton" binding="toLoginButton">
+            <constraints>
+              <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Courier New" size="22"/>
+              <foreground color="-16718561"/>
+              <text value="Have an account? Click here to login."/>
+            </properties>
+          </component>
+          <vspacer id="d0ea8">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <vspacer id="ba000">
+          <vspacer id="4ebff">
             <constraints>
-              <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <hspacer id="1427f">
+          <vspacer id="a3e06">
             <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="20" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <hspacer id="ac5e9">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="9e0a2">
+          <hspacer id="e57a0">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <component id="6b7bb" class="javax.swing.JButton" binding="toLoginButton">
+          <component id="7d879" class="javax.swing.JTextField" binding="createUsernameField">
             <constraints>
-              <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
             </constraints>
             <properties>
-              <text value="Already have an account? Click here to login."/>
+              <font name="Courier New" size="36"/>
             </properties>
           </component>
+          <component id="9f801" class="javax.swing.JPasswordField" binding="createPasswordField">
+            <constraints>
+              <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Courier New" size="36"/>
+            </properties>
+          </component>
+          <component id="86e6c" class="javax.swing.JPasswordField" binding="confirmPasswordField">
+            <constraints>
+              <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Courier New" size="36"/>
+            </properties>
+          </component>
+          <component id="18999" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Courier New" size="22"/>
+              <foreground color="-16718561"/>
+              <text value="No spaces or special characters"/>
+            </properties>
+          </component>
+          <component id="98eb3" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Courier New" size="22"/>
+              <foreground color="-16718561"/>
+              <text value="6-12 characters"/>
+            </properties>
+          </component>
+          <vspacer id="7bc5c">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="958c2">
+            <constraints>
+              <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="69f88">
+            <constraints>
+              <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="6e1f">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="931de">
+            <constraints>
+              <grid row="19" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="4610a">
+            <constraints>
+              <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
         </children>
       </grid>
     </children>
