@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Classes extends JFrame implements ActionListener{
+public class ClassesScreen extends JFrame implements ActionListener{
     private JFrame classesFrame;
     private JPanel viewClassesPanel;
     private JButton calculateAvgButton;
@@ -13,7 +13,7 @@ public class Classes extends JFrame implements ActionListener{
     private JButton backButton;
     private ArrayList<JButton> classButtons = new ArrayList<JButton>();
 
-    public Classes(){
+    public ClassesScreen(){
         initializeFrame();
         setupTopPanel();
         setupBottomPanel();
