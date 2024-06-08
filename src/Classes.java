@@ -1,21 +1,24 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Classes extends JFrame {
+public class Classes extends JFrame implements ActionListener{
     private JFrame classesFrame;
     private JPanel viewClassesPanel;
     private JButton calculateAvgButton;
     private JButton addClassButton;
+    private JButton backButton;
+    private ArrayList<JButton> classButtons = new ArrayList<JButton>();
 
     public Classes(){
         initializeFrame();
         setupTopPanel();
         setupBottomPanel();
         setupCentralPanel();
-        classButtons();
+        createClassButtons();
     }
 
     private void initializeFrame() {
@@ -45,26 +48,35 @@ public class Classes extends JFrame {
 
     private void setupBottomPanel(){
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+        backButton = createButton("Back", 180, 50, Color.LIGHT_GRAY);
+        bottomPanel.add(backButton);
+
         bottomPanel.setBackground(Color.BLACK);
         createPlannerName(bottomPanel);
+
         classesFrame.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    private JButton createButton (String text, int xSize, int ySize){
+    private JButton createButton (String text, int xSize, int ySize, Color color){
         JButton button = new JButton(text);
         button.setForeground(Color.BLACK);
-        button.setBackground(Color.LIGHT_GRAY);
+        button.setBackground(color);
         button.setPreferredSize(new Dimension(xSize, ySize));
         button.setFont(new Font("Arial", Font.PLAIN, 32));
+        button.addActionListener(this);
         return button;
     }
 
     private void setupCentralPanel(){
+
+        // Main central panel
         JPanel borderPanel = new JPanel(new BorderLayout());
         borderPanel.setBorder(new EmptyBorder(200,300,200,300));
         borderPanel.setBackground(Color.BLACK);
         classesFrame.add(borderPanel, BorderLayout.CENTER);
 
+        // Sub-panel for header
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Your Classes This Semester");
         title.setFont(new Font("Courier New", Font.BOLD, 65));
@@ -75,52 +87,49 @@ public class Classes extends JFrame {
         titlePanel.add(title);
         borderPanel.add(titlePanel, BorderLayout.NORTH);
 
+        // Sub-panel for classes display
         viewClassesPanel = new JPanel();
         viewClassesPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
         borderPanel.add(viewClassesPanel, BorderLayout.CENTER);
 
+        // Sub-panel for overall average calculator button
         JPanel avgPanel = new JPanel();
         avgPanel.setBorder(new EmptyBorder(20,0,20,0));
-        calculateAvgButton = createButton("AVERAGE CALCULATOR", 500, 50);
+        calculateAvgButton = createButton("AVERAGE CALCULATOR", 500, 50, Color.LIGHT_GRAY);
         avgPanel.add(calculateAvgButton);
         borderPanel.add(avgPanel, BorderLayout.SOUTH);
     }
 
-    private void classButtons(){
+    private void createClassButtons(){
         ArrayList<Course> courseList = new ArrayList<Course>();
 
-        /*
-        // Demo classes
-        Course One = new Course("Organic Chemistry", "1");
-        Course Two = new Course("Algorithms", "1");
-        Course A = new Course("Statistics", "1");
-        Course B = new Course("Economics", "1");
-        Course C = new Course("Biology", "1");
-        Course D = new Course("Computer Science", "1");
-        Course E = new Course("Calculus II", "1");
-        Course F = new Course("Human Anatomy", "1");
-        Course G = new Course("A Random Course", "1");
-        Course H = new Course("Testing", "1");
-
-        courseList.add(One);
-        courseList.add(Two);
-        courseList.add(A);
-        courseList.add(B);
-        courseList.add(C);
-        courseList.add(D);
-        courseList.add(E);
-        courseList.add(F);
-        courseList.add(G);
-        courseList.add(H);
-        */
-
-        ArrayList<JButton> classButtons = new ArrayList<JButton>();
+        // Set up buttons for each class
         for(Course course : courseList){
-            JButton button = createButton(course.getName(), 300, 50);
+            JButton button = createButton(course.getName(), 300, 50, Color.LIGHT_GRAY);
             classButtons.add(button);
             viewClassesPanel.add(button);
         }
-        addClassButton = createButton("+ Add Class", 300, 50);
+
+        // Set up button for adding a class
+        addClassButton = createButton("+ Add Class", 300, 50, new Color(0,229,31));
         viewClassesPanel.add(addClassButton);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == backButton){
+            classesFrame.dispose();
+            new homeScreen();
+        }
+        else if(e.getSource() == calculateAvgButton){
+            // display dialog with calculated average or new screen?
+        }
+        else if(e.getSource() == addClassButton){
+            // go to add class screen
+        }
+        else{
+            // check which specific class button was clicked
+            // proceed to corresponding class screen
+        }
     }
 }
