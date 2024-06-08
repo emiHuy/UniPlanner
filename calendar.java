@@ -19,6 +19,7 @@ public class calendar extends JFrame {
     private JEditorPane editorPane12;
     private JEditorPane editorPane13;
     private JEditorPane editorPane14;
+    private JButton SAVEButton;
 
     public calendar() {
 
@@ -34,6 +35,12 @@ public class calendar extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+            }
+        });
+        SAVEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
