@@ -25,6 +25,8 @@ public class homeScreen extends JFrame {
         classes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new Classes();
+                display.dispose();
 
             }
         });
