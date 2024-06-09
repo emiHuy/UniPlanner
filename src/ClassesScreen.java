@@ -11,7 +11,7 @@ public class ClassesScreen extends JFrame implements ActionListener{
     private JButton calculateAvgButton;
     private JButton addClassButton;
     private JButton backButton;
-    private ArrayList<JButton> classButtons = new ArrayList<JButton>();
+    private ArrayList<JButton> classButtons = new ArrayList<>();
 
     public ClassesScreen(){
         initializeFrame();
@@ -39,6 +39,7 @@ public class ClassesScreen extends JFrame implements ActionListener{
         plannerName.setBorder(new EmptyBorder(50,50,50,50));
         panel.add(plannerName);
     }
+
     private void setupTopPanel(){
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         topPanel.setBackground(Color.BLACK);
@@ -101,17 +102,18 @@ public class ClassesScreen extends JFrame implements ActionListener{
     }
 
     private void createClassButtons(){
-        ArrayList<Course> courseList = new ArrayList<Course>();
+        //Retrieve courses
+        ArrayList<Course> courseList = Course.getCourseList();
 
         // Set up buttons for each class
         for(Course course : courseList){
-            JButton button = createButton(course.getName(), 300, 50, Color.LIGHT_GRAY);
+            JButton button = createButton(course.getName(), 350, 50, Color.LIGHT_GRAY);
             classButtons.add(button);
             viewClassesPanel.add(button);
         }
 
         // Set up button for adding a class
-        addClassButton = createButton("+ Add Class", 300, 50, new Color(0,229,31));
+        addClassButton = createButton("+ Add Class", 350, 50, new Color(0,229,31));
         viewClassesPanel.add(addClassButton);
     }
 
@@ -125,7 +127,8 @@ public class ClassesScreen extends JFrame implements ActionListener{
             // display dialog with calculated average or new screen?
         }
         else if(e.getSource() == addClassButton){
-            // go to add class screen
+            classesFrame.dispose();
+            new AddClassScreen();
         }
         else{
             // check which specific class button was clicked
