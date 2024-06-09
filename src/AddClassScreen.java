@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddClassScreen extends JFrame implements ActionListener {
-    private JFrame classesFrame;
+    private JFrame addClassesFrame;
     private JButton addClassButton;
     private JPanel borderPanel;
     private JPanel buttonPanel;
@@ -23,15 +23,15 @@ public class AddClassScreen extends JFrame implements ActionListener {
     }
 
     private void initializeFrame() {
-        classesFrame = new JFrame();
-        classesFrame.setSize(1280, 720);
-        classesFrame.setVisible(true);
-        classesFrame.setTitle("MnM Uni Planner");
-        classesFrame.setLocationRelativeTo(null);
-        classesFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        classesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        classesFrame.add(parentPanel);
-        classesFrame.setContentPane(parentPanel);
+        addClassesFrame = new JFrame();
+        addClassesFrame.setSize(1280, 720);
+        addClassesFrame.setVisible(true);
+        addClassesFrame.setTitle("MnM Uni Planner");
+        addClassesFrame.setLocationRelativeTo(null);
+        addClassesFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        addClassesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addClassesFrame.add(parentPanel);
+        addClassesFrame.setContentPane(parentPanel);
     }
 
     private void adjustComponents(){
@@ -56,40 +56,30 @@ public class AddClassScreen extends JFrame implements ActionListener {
         addClassButton.addActionListener(this);
     }
 
-    // Get valid string input
-    private static String getValidStrInput(JTextField field){
-        String input;
-        boolean isInvalid;
-
-        do{
-            isInvalid = false;
-            input = field.getText().trim();
-
-            if(input.isEmpty()){
-                isInvalid = true;
-                System.out.println("Invalid input. Nothing entered.\n");
-            }
-
-        } while(isInvalid);
-        return input;
-    }
-
     private void collectInput(){
-        String courseName = getValidStrInput(courseNameField);
-        String courseCode = getValidStrInput(courseCodeField);
-        new Course(courseName, courseCode);
+        String courseName = courseNameField.getText();
+        String courseCode = courseCodeField.getText();
+
+        if(courseName.trim().isEmpty() || courseCode.trim().isEmpty()){
+            UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+            UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+            JOptionPane.showMessageDialog(addClassesFrame, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            new Course(courseName, courseCode);
+            addClassesFrame.dispose();
+            new ClassesScreen();
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == backButton){
-            classesFrame.dispose();
+            addClassesFrame.dispose();
             new ClassesScreen(); // Go back to classes screen
         }
         else if(e.getSource() == addClassButton){
-            classesFrame.dispose();
             collectInput();
-            new ClassesScreen();
         }
     }
 }

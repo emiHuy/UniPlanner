@@ -64,7 +64,7 @@ public class ClassesScreen extends JFrame implements ActionListener{
         button.setForeground(Color.BLACK);
         button.setBackground(color);
         button.setPreferredSize(new Dimension(xSize, ySize));
-        button.setFont(new Font("Arial", Font.PLAIN, 32));
+        button.setFont(new Font("Arial", Font.PLAIN, 36));
         button.addActionListener(this);
         return button;
     }
@@ -107,14 +107,26 @@ public class ClassesScreen extends JFrame implements ActionListener{
 
         // Set up buttons for each class
         for(Course course : courseList){
-            JButton button = createButton(course.getName(), 350, 50, Color.LIGHT_GRAY);
+            JButton button = createButton(course.getName(), 400, 50, Color.LIGHT_GRAY);
             classButtons.add(button);
             viewClassesPanel.add(button);
         }
 
         // Set up button for adding a class
-        addClassButton = createButton("+ Add Class", 350, 50, new Color(0,229,31));
+        addClassButton = createButton("+ Add Class", 400, 50, new Color(0,229,36));
         viewClassesPanel.add(addClassButton);
+    }
+
+    private Course linearSearchCourse(String name){
+        //Retrieve courses
+        ArrayList<Course> courseList = Course.getCourseList();
+
+        for(Course course : courseList){
+            if(course.getName().equals(name)){
+                return course;
+            }
+        }
+        return new Course("", "");
     }
 
     @Override
@@ -131,8 +143,12 @@ public class ClassesScreen extends JFrame implements ActionListener{
             new AddClassScreen();
         }
         else{
-            // check which specific class button was clicked
-            // proceed to corresponding class screen
+            // Get button that was clicked
+            JButton button = (JButton)e.getSource();
+            // Search for course by course name
+            Course course = linearSearchCourse(button.getText());
+            // Go to corresponding course screen
+            new SpecificClassScreen(course);
         }
     }
 }
