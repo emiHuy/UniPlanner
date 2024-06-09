@@ -15,7 +15,7 @@ public class SpecificClassScreen implements ActionListener {
     private JButton yourWorkButton;
     private JButton calculateAverageButton;
     // EMMA: Create private Course object here --> name it smt other than course as I have used 'course' in other areas of code
-    // EMMA: ie. you can name it specificCourse or selectedCourse or smt else.
+    // EMMA: ie. you can name it specificCourse or selectedCourse or smt else. 
 
     public SpecificClassScreen(Course course){
         initializeFrame();
