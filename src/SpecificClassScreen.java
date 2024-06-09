@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SpecificClassScreen implements ActionListener {
-    JFrame classFrame;
+    private JFrame classFrame;
     private JPanel parentPanel;
     private JLabel topPlannerName;
     private JButton backButton;
@@ -14,11 +14,15 @@ public class SpecificClassScreen implements ActionListener {
     private JLabel header;
     private JButton yourWorkButton;
     private JButton calculateAverageButton;
+    // EMMA: Create private Course object here --> name it smt other than course as I have used 'course' in other areas of code
+    // EMMA: ie. you can name it specificCourse or selectedCourse or smt else. 
 
     public SpecificClassScreen(Course course){
         initializeFrame();
         adjustComponents();
         loadVariableData(course);
+        // EMMA: Here is where you assign course object value, using the course parameter taken
+        // EMMA: ie. specificCourse = course; <--- if you named the object variable specificCourse.
     }
 
     private void initializeFrame() {
@@ -65,10 +69,17 @@ public class SpecificClassScreen implements ActionListener {
             new ClassesScreen(); // Go back to classes screen
         }
         else if(e.getSource() == yourWorkButton){
-            // go to your work screen
+            // EMMA: go to your work screen, take in Course object as parameter
+            // EMMA: ie. new YourWorkScreen(specificCourse); <--- if specificCourse is the object variable name
+
+            // EMMA: Screen for adding new evaluations is very similar to adding classes --> check out my code and form
+            // EMMA: Most of the code is for layout, which you can copy along with form. Check the method I used for retrieving input and where it was called in code.
         }
         else if(e.getSource() == calculateAverageButton){
-            // display calculated average
+            // EMMA: display calculated average screen, take in Course object as parameter (like I stated in above else if statement)
+
+            // EMMA: in average screen, use the getter method for evaluation list to retrieve evaluations --> this is an instance method, so you must use Course object to call it
+            // EMMA: use enhanced for loop to iterate through each evaluation, and use a getter to retrieve marks (add marks and divide by number of evaluations)
         }
     }
 }
