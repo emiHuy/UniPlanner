@@ -3,6 +3,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SpecificClassScreen implements ActionListener {
     private JFrame classFrame;
@@ -14,20 +15,21 @@ public class SpecificClassScreen implements ActionListener {
     private JLabel header;
     private JButton yourWorkButton;
     private JButton calculateAverageButton;
-    // EMMA: Create private Course object here --> name it smt other than course as I have used 'course' in other areas of code
-    // EMMA: ie. you can name it specificCourse or selectedCourse or smt else. 
+    private static Course specificCourse;
 
     public SpecificClassScreen(Course course){
+        specificCourse = course;
         initializeFrame();
         adjustComponents();
         loadVariableData(course);
-        // EMMA: Here is where you assign course object value, using the course parameter taken
-        // EMMA: ie. specificCourse = course; <--- if you named the object variable specificCourse.
+    }
+    public static Course getSpecificCourse() {
+        return specificCourse;
     }
 
     private void initializeFrame() {
         classFrame = new JFrame();
-        classFrame.setSize(1280, 720);
+        classFrame.setSize(1200, 1000);
         classFrame.setVisible(true);
         classFrame.setTitle("MnM Uni Planner");
         classFrame.setLocationRelativeTo(null);
@@ -39,11 +41,11 @@ public class SpecificClassScreen implements ActionListener {
 
     private void adjustComponents(){
         // Add spacing around panels
-        borderPanel.setBorder(new EmptyBorder(200,300,200,300));
+        borderPanel.setBorder(new EmptyBorder(50,75,50,75));
 
         // Add spacing around JLabels
-        topPlannerName.setBorder(new EmptyBorder(50,50,50,50));
-        bottomPlannerName.setBorder(new EmptyBorder(50,50,50,50));
+        bottomPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
+        topPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
         header.setBorder(new EmptyBorder(50, 20, 50, 20));
 
         // Set background colours for buttons
@@ -56,30 +58,44 @@ public class SpecificClassScreen implements ActionListener {
 
         // Add listeners
         backButton.addActionListener(this);
+        yourWorkButton.addActionListener(this);
+        calculateAverageButton.addActionListener(this);
     }
 
     private void loadVariableData(Course course){
         header.setText(course.getName() + "(" + course.getCode() + ")");
     }
 
+    // Method to calculate and display the average score for the specific course
+    private void calculateAndDisplayAverage() {
+        // Retrieve evaluations for the specific course
+        ArrayList<Evaluation> evaluations = specificCourse.getEvaluations();
+        double totalScore = 0;
+        int count = evaluations.size();
+
+        // Calculate total score
+        for (Evaluation evaluation : evaluations) {
+            totalScore += evaluation.getEvaluationScore();
+        }
+
+        // Calculate average
+        double average = count > 0 ? totalScore / count : 0;
+
+        // Display a dialog with the calculated average
+        JOptionPane.showMessageDialog(null, "Average Score for " + specificCourse.getName() + ": " + average);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backButton) {
             classFrame.dispose();
-            new ClassesScreen(); // Go back to classes screen
+            new ClassesScreen();
         }
-        else if(e.getSource() == yourWorkButton){
-            // EMMA: go to your work screen, take in Course object as parameter
-            // EMMA: ie. new YourWorkScreen(specificCourse); <--- if specificCourse is the object variable name
-
-            // EMMA: Screen for adding new evaluations is very similar to adding classes --> check out my code and form
-            // EMMA: Most of the code is for layout, which you can copy along with form. Check the method I used for retrieving input and where it was called in code.
+        else if(e.getSource() == yourWorkButton){;
+            new YourWorkScreen(specificCourse);
         }
         else if(e.getSource() == calculateAverageButton){
-            // EMMA: display calculated average screen, take in Course object as parameter (like I stated in above else if statement)
-
-            // EMMA: in average screen, use the getter method for evaluation list to retrieve evaluations --> this is an instance method, so you must use Course object to call it
-            // EMMA: use enhanced for loop to iterate through each evaluation, and use a getter to retrieve marks (add marks and divide by number of evaluations)
+            calculateAndDisplayAverage();
         }
     }
 }

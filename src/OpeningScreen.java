@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
-public class OpeningScreen extends JFrame implements ActionListener{
+public class OpeningScreen implements ActionListener{
     private JFrame display = new JFrame();
     private JPanel startPanel;
     private JPanel openingScreen;
@@ -103,7 +103,7 @@ public class OpeningScreen extends JFrame implements ActionListener{
         else if(e.getSource() == loginToMenuButton){
             String username = usernameField.getText();
             String password = passwordField.getText();
-            new homeScreen();
+            new HomeScreen();
             display.dispose();
             // proceed to home screen after checking existing files
         }
@@ -114,7 +114,7 @@ public class OpeningScreen extends JFrame implements ActionListener{
             String confirmPassword = confirmPasswordField.getText();
             boolean valid = checkRegisterInfo(name, username, password, confirmPassword);
             if(valid){
-                new homeScreen();
+                new HomeScreen();
                 display.dispose();
             }
         }

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddClassScreen extends JFrame implements ActionListener {
+public class AddClassScreen implements ActionListener {
     private JFrame addClassesFrame;
     private JButton addClassButton;
     private JPanel borderPanel;
@@ -24,7 +24,7 @@ public class AddClassScreen extends JFrame implements ActionListener {
 
     private void initializeFrame() {
         addClassesFrame = new JFrame();
-        addClassesFrame.setSize(1280, 720);
+        addClassesFrame.setSize(1200, 1000);
         addClassesFrame.setVisible(true);
         addClassesFrame.setTitle("MnM Uni Planner");
         addClassesFrame.setLocationRelativeTo(null);
@@ -36,13 +36,13 @@ public class AddClassScreen extends JFrame implements ActionListener {
 
     private void adjustComponents(){
         // Add spacing around panels
-        borderPanel.setBorder(new EmptyBorder(200,300,200,300));
-        buttonPanel.setBorder(new EmptyBorder(100,0,100,0));
+        borderPanel.setBorder(new EmptyBorder(50,75,50,75));
+        buttonPanel.setBorder(new EmptyBorder(25,0,25,0));
 
         // Add spacing around JLabels
-        topPlannerName.setBorder(new EmptyBorder(50,50,50,50));
-        bottomPlannerName.setBorder(new EmptyBorder(50,50,50,50));
-        header.setBorder(new EmptyBorder(50, 20, 50, 20));
+        bottomPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
+        topPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
+        header.setBorder(new EmptyBorder(25, 20, 25, 20));
 
         // Set background colours for buttons
         addClassButton.setBackground(Color.LIGHT_GRAY);
@@ -67,16 +67,16 @@ public class AddClassScreen extends JFrame implements ActionListener {
         }
         else{
             new Course(courseName, courseCode);
-            addClassesFrame.dispose();
             new ClassesScreen();
+            addClassesFrame.dispose();
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == backButton){
-            addClassesFrame.dispose();
             new ClassesScreen(); // Go back to classes screen
+            addClassesFrame.dispose();
         }
         else if(e.getSource() == addClassButton){
             collectInput();
