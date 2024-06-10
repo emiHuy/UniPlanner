@@ -143,7 +143,7 @@ public class ClassesScreen extends JFrame implements ActionListener{
             avgCalculator.setVisible(true);
         }
         else if(e.getSource() == addClassButton){
-            classesFrame.dispose();
+            dispose();
             new AddClassScreen();
         }
         else{

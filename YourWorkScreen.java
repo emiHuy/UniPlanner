@@ -14,7 +14,8 @@ import java.util.List       ;import java.util.ArrayList; public class YourWorkSc
         setVisible(true);       new JFrame();
        setTitle("Your Work Screen");
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);          String[] columnNames = {"Evaluation Name", "Score", "Date"};
+        table1.setModel(new DefaultTableModel(new Object[][]{}, columnNames)); // Set font for table headers
         addAssignmentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

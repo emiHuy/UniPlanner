@@ -29,6 +29,7 @@ public class AssignmentAddScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 collectInput();
+                yourWorkScreen.dispose();
 
 
             }
