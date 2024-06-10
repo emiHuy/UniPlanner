@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ClassesScreen extends JFrame implements ActionListener{
+public class ClassesScreen implements ActionListener{
     private JFrame classesFrame;
     private JPanel viewClassesPanel;
     private JButton calculateAvgButton;
@@ -23,7 +23,7 @@ public class ClassesScreen extends JFrame implements ActionListener{
 
     private void initializeFrame() {
         classesFrame = new JFrame();
-        classesFrame.setSize(1280, 720);
+        classesFrame.setSize(1200, 1000);
         classesFrame.setVisible(true);
         classesFrame.setTitle("MnM Uni Planner");
         classesFrame.setLocationRelativeTo(null);
@@ -34,9 +34,9 @@ public class ClassesScreen extends JFrame implements ActionListener{
 
     private void createPlannerName(JPanel panel){
         JLabel plannerName = new JLabel("MnM Uni Planner");
-        plannerName.setFont(new Font("Courier New", Font.PLAIN, 25));
+        plannerName.setFont(new Font("Courier New", Font.PLAIN, 16));
         plannerName.setForeground(new Color(0,229,31));
-        plannerName.setBorder(new EmptyBorder(50,50,50,50));
+        plannerName.setBorder(new EmptyBorder(25,25,25,25));
         panel.add(plannerName);
     }
 
@@ -64,7 +64,7 @@ public class ClassesScreen extends JFrame implements ActionListener{
         button.setForeground(Color.BLACK);
         button.setBackground(color);
         button.setPreferredSize(new Dimension(xSize, ySize));
-        button.setFont(new Font("Arial", Font.PLAIN, 36));
+        button.setFont(new Font("Arial", Font.PLAIN, 28));
         button.addActionListener(this);
         return button;
     }
@@ -73,29 +73,29 @@ public class ClassesScreen extends JFrame implements ActionListener{
 
         // Main central panel
         JPanel borderPanel = new JPanel(new BorderLayout());
-        borderPanel.setBorder(new EmptyBorder(200,300,200,300));
+        borderPanel.setBorder(new EmptyBorder(50,75,50,75));
         borderPanel.setBackground(Color.BLACK);
         classesFrame.add(borderPanel, BorderLayout.CENTER);
 
         // Sub-panel for header
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Your Classes This Semester");
-        title.setFont(new Font("Courier New", Font.BOLD, 65));
+        title.setFont(new Font("Courier New", Font.BOLD, 40));
         title.setForeground(Color.BLACK);
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setBorder(new EmptyBorder(50, 20, 50, 20));
+        title.setBorder(new EmptyBorder(25, 25, 25, 25));
         titlePanel.setBackground(new Color(0, 229, 31));
         titlePanel.add(title);
         borderPanel.add(titlePanel, BorderLayout.NORTH);
 
         // Sub-panel for classes display
         viewClassesPanel = new JPanel();
-        viewClassesPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
+        viewClassesPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 10));
         borderPanel.add(viewClassesPanel, BorderLayout.CENTER);
 
         // Sub-panel for overall average calculator button
         JPanel avgPanel = new JPanel();
-        avgPanel.setBorder(new EmptyBorder(20,0,20,0));
+        avgPanel.setBorder(new EmptyBorder(10,0,10,0));
         calculateAvgButton = createButton("AVERAGE CALCULATOR", 500, 50, Color.LIGHT_GRAY);
         avgPanel.add(calculateAvgButton);
         borderPanel.add(avgPanel, BorderLayout.SOUTH);
@@ -129,18 +129,20 @@ public class ClassesScreen extends JFrame implements ActionListener{
         return new Course("", "");
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == backButton){
+            new HomeScreen();
             classesFrame.dispose();
-            new homeScreen();
         }
         else if(e.getSource() == calculateAvgButton){
             // display dialog with calculated average or new screen?
+            new AverageCalculator();
         }
         else if(e.getSource() == addClassButton){
-            classesFrame.dispose();
             new AddClassScreen();
+            classesFrame.dispose();
         }
         else{
             // Get button that was clicked

@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class studyGuide extends JFrame implements ActionListener{
+public class StudyGuide extends JFrame implements ActionListener{
     private JPanel studyGuide;
     private JButton essayButton;
     private JButton projectButton;
@@ -13,8 +13,12 @@ public class studyGuide extends JFrame implements ActionListener{
     private JLabel imageLabel;
     private String status= "";
 
-    public studyGuide() {
-        //createUIComponents(); // Initialize UI components first
+    public StudyGuide() {
+        initializeFrame();
+        addActionListeners();
+    }
+
+    private void initializeFrame(){
         setSize(1200, 1000);
         setContentPane(studyGuide);
         setTitle("study-guide");
@@ -22,8 +26,9 @@ public class studyGuide extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Set the JFrame to be maximized
+    }
 
-        // add action listeners to buttons
+    private void addActionListeners(){
         essayButton.addActionListener(this);
         projectButton.addActionListener(this);
         subjectButton.addActionListener(this);
@@ -31,25 +36,23 @@ public class studyGuide extends JFrame implements ActionListener{
         backButton.addActionListener(this);
     }
 
-    // perform necessary actions when buttons are clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == essayButton){
-            essayPlanner essayPlanner = new essayPlanner("essay");
+            new Template("essay");
         }
         else if(e.getSource() == projectButton){
-            essayPlanner essayPlanner = new essayPlanner("project");
+            new Template("project");
         }
         else if(e.getSource() == subjectButton){
-            essayPlanner essayPlanner = new essayPlanner("subject");
+            new Template("subject");
         }
         else if(e.getSource() == financeButton){
-            String status="finance";
-            essayPlanner essayPlanner = new essayPlanner(status);
+            new Template("finance");
         }
         else if(e.getSource() == backButton){
+            new HomeScreen();
             dispose();
         }
     }
-
 }
