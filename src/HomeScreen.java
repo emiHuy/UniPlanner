@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeScreen implements ActionListener{
     private JFrame window;
@@ -9,10 +11,12 @@ public class HomeScreen implements ActionListener{
     private JButton calendarButton;
     private JButton studyGuideButton;
     private JButton xButton;
+    private  Map<String, String> savedData;
 
     public HomeScreen() {
         initializeFrame();
         addActionListeners();
+        this.savedData = new HashMap<>();
     }
 
     private void initializeFrame(){
@@ -41,8 +45,10 @@ public class HomeScreen implements ActionListener{
             window.dispose();
         }
         else if(e.getSource() == calendarButton){
-            new Calendar();
-            window.dispose();
+
+            System.out.print("load:"+savedData.toString());
+            new Calendar(savedData);
+            //window.dispose();
         }
         else if(e.getSource() == studyGuideButton){
             new StudyGuide();
@@ -53,6 +59,6 @@ public class HomeScreen implements ActionListener{
             if (result == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
-        }
-    }
-}
+        }}}
+
+
