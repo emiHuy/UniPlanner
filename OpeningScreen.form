@@ -88,7 +88,7 @@
         </constraints>
         <properties>
           <background color="-16777216"/>
-          <visible value="false"/>
+          <visible value="true"/>
         </properties>
         <border type="none"/>
         <children>

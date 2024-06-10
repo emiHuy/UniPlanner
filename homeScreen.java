@@ -11,6 +11,7 @@ public class homeScreen extends JFrame {
     private JButton xButton;
 
     public homeScreen() {
+
     //initialize frame
     display = new JFrame();
     display.add(homePanel);
@@ -18,11 +19,14 @@ public class homeScreen extends JFrame {
     display.setContentPane(homePanel);
     display.setVisible(true);
     display.setTitle("MnM Uni Planner");
+    display.setLocationRelativeTo(null);
     display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         classes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new ClassesScreen();
+                display.dispose();
 
             }
         });
@@ -30,7 +34,6 @@ public class homeScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 calendar c=new calendar();
-
             }
         });
 
@@ -62,4 +65,5 @@ public class homeScreen extends JFrame {
         h.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
+
 }
