@@ -3,26 +3,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 
+
 public class Calendar extends JFrame implements ActionListener {
     private JPanel calendar;
     private JButton backButton;
     private JButton saveButton;
-    private JTextArea textArea1;
-    private JTextArea textArea2;
-    private JTextArea textArea3;
-    private JTextArea textArea4;
-    private JTextArea textArea5;
-    private JTextArea textArea6;
-    private JTextArea textArea7;
-    private JTextArea textArea8;
-    private JTextArea textArea9;
-    private JTextArea textArea10;
-    private JTextArea textArea11;
-    private JTextArea textArea12;
-    private JTextArea textArea13;
-    private JTextArea textArea14;
+    private JTextArea mondayBox;
+    private JTextArea mondayBox2;
+    private JTextArea tuesdayBox;
+    private JTextArea tuesdayBox2;
+    private JTextArea wednesdayBox;
+    private JTextArea wednesdayBox2;
+    private JTextArea thursdayBox;
+    private JTextArea thursdayBox2;
+    private JTextArea fridayBox;
+    private JTextArea sundayBox;
+    private JTextArea saturdayBox;
+    private JTextArea fridayBox2;
+    private JTextArea saturdayBox2;
+    private JTextArea sundayBox2;
     private  Map<String, String> savedData;
-
     public Calendar(Map<String, String> savedData) {
         this.savedData=savedData;
         initializeFrame();
@@ -48,21 +48,20 @@ public class Calendar extends JFrame implements ActionListener {
 
     private void loadSavedData() {
         System.out.println("Loading saved data...");
-        textArea1.setText(savedData.get("TextArea1"));
-        textArea2.setText(savedData.get("TextArea2"));
-        textArea3.setText(savedData.get("TextArea3"));
-        textArea4.setText(savedData.get("TextArea4"));
-        textArea5.setText(savedData.get("TextArea5"));
-        textArea6.setText(savedData.get("TextArea6"));
-        textArea7.setText(savedData.get("TextArea7"));
-        textArea8.setText(savedData.get("TextArea8"));
-        textArea9.setText(savedData.get("TextArea9"));
-        textArea10.setText(savedData.get("TextArea10"));
-        textArea11.setText(savedData.get("TextArea11"));
-        textArea12.setText(savedData.get("TextArea12"));
-        textArea13.setText(savedData.get("TextArea13"));
-        textArea14.setText(savedData.get("TextArea14"));
-        //System.out.print("load date:"+savedData.get"TextArea1" ""));
+        mondayBox.setText(savedData.get("TextArea1"));
+        mondayBox2.setText(savedData.get("TextArea2"));
+        tuesdayBox.setText(savedData.get("TextArea3"));
+        tuesdayBox2.setText(savedData.get("TextArea4"));
+        wednesdayBox.setText(savedData.get("TextArea5"));
+        wednesdayBox2.setText(savedData.get("TextArea6"));
+        thursdayBox.setText(savedData.get("TextArea7"));
+        thursdayBox2.setText(savedData.get("TextArea8"));
+        fridayBox.setText(savedData.get("TextArea9"));
+        sundayBox.setText(savedData.get("TextArea10"));
+        saturdayBox.setText(savedData.get("TextArea11"));
+        fridayBox2.setText(savedData.get("TextArea12"));
+        saturdayBox2.setText(savedData.get("TextArea13"));
+        sundayBox2.setText(savedData.get("TextArea14"));
     }
 
     @Override
@@ -76,20 +75,20 @@ public class Calendar extends JFrame implements ActionListener {
     }
 
     private void saveInfo() {
-        savedData.put("TextArea1", textArea1.getText());
-        savedData.put("TextArea2", textArea2.getText());
-        savedData.put("TextArea3", textArea3.getText());
-        savedData.put("TextArea4", textArea4.getText());
-        savedData.put("TextArea5", textArea5.getText());
-        savedData.put("TextArea6", textArea6.getText());
-        savedData.put("TextArea7", textArea7.getText());
-        savedData.put("TextArea8", textArea8.getText());
-        savedData.put("TextArea9", textArea9.getText());
-        savedData.put("TextArea10", textArea10.getText());
-        savedData.put("TextArea11", textArea11.getText());
-        savedData.put("TextArea12", textArea12.getText());
-        savedData.put("TextArea13", textArea13.getText());
-        savedData.put("TextArea14", textArea14.getText());
+        savedData.put("TextArea1", mondayBox.getText());
+        savedData.put("TextArea2", mondayBox2.getText());
+        savedData.put("TextArea3", tuesdayBox.getText());
+        savedData.put("TextArea4", tuesdayBox2.getText());
+        savedData.put("TextArea5", wednesdayBox.getText());
+        savedData.put("TextArea6", wednesdayBox2.getText());
+        savedData.put("TextArea7", thursdayBox.getText());
+        savedData.put("TextArea8", thursdayBox2.getText());
+        savedData.put("TextArea9", fridayBox.getText());
+        savedData.put("TextArea10", sundayBox.getText());
+        savedData.put("TextArea11", saturdayBox.getText());
+        savedData.put("TextArea12", fridayBox2.getText());
+        savedData.put("TextArea13", saturdayBox2.getText());
+        savedData.put("TextArea14", sundayBox2.getText());
 
         // Print the saved data for verification
         savedData.forEach((key, value) -> {
