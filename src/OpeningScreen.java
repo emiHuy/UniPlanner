@@ -25,14 +25,14 @@ public class OpeningScreen implements ActionListener{
     private JButton toLoginButton;
 
     public OpeningScreen(){
-        intialize();
+        intializeFrame();
         openingScreen();
         loginScreen();
         registerScreen();
+        FileOperations.readAccountsList();
     }
 
-    // Set up JFrame/Window
-    private void intialize(){
+    private void intializeFrame(){
         display = new JFrame();
         display.setSize(1000, 1100);
         display.add(startPanel);
@@ -71,22 +71,28 @@ public class OpeningScreen implements ActionListener{
                 return false;
             }
         }
+
+        // Check if any fields are empty
         if(name.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
             JOptionPane.showMessageDialog(display, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        // Check if name is not alphabetical
         else if(!name.matches("[a-zA-Z]+")){
             JOptionPane.showMessageDialog(display, "Name can only consist of alphabetical characters.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        else if(!username.matches("[a-zA-Z]+")){
-            JOptionPane.showMessageDialog(display, "Username can only consist of alphabetical characters.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+        // Check if username contains special characters
+        else if(!username.matches("[a-zA-Z0-9]+")){
+            JOptionPane.showMessageDialog(display, "Username can only consist of alphabetical and numerical characters.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        // Check if password length is invalid
         else if(password.length() > 12 || password.length() < 6){
             JOptionPane.showMessageDialog(display, "Password must be from 6 to 12 characters long.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        // Check if password does not match confirmed password
         else if(!password.equals(confirmPassword)){
             JOptionPane.showMessageDialog(display, "Password and confirm password fields do not match.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
@@ -96,11 +102,13 @@ public class OpeningScreen implements ActionListener{
 
     private Account checkLoginInfo(String username, String password){
         ArrayList<Account> accountsList = Account.getAccountsList();
+        // Check if login information matched any existing account
         for(Account account: accountsList){
             if(username.equals(account.getUsername()) && password.equals(account.getPassword())){
                 return account;
             }
         }
+        // At this point, login information did not match any existing accounts
         return null;
     }
 
@@ -119,28 +127,39 @@ public class OpeningScreen implements ActionListener{
             registerScreen.setVisible(true);
         }
         else if(e.getSource() == loginToMenuButton){
+            // Collect login info from fields
             String username = usernameField.getText();
             String password = passwordField.getText();
+            // Check login info
             Account userAccount = checkLoginInfo(username, password);
+
+            // If valid,
             if(userAccount != null){
-                // proceed to home screen after checking existing files
+                // read and retrieve user's account data from the saved file
+                FileOperations.readAccountData(userAccount);
+                // Go to home screen
                 new HomeScreen(userAccount);
                 display.dispose();
             }
             else{
                 UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
                 UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                // Display input error message
                 JOptionPane.showMessageDialog(display, "Incorrect username or password.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             }
         }
         else if(e.getSource() == createAccountButton){
+            // Collect register info from fields
             String name = nameField.getText();
             String username = createUsernameField.getText();
             String password = createPasswordField.getText();
             String confirmPassword = confirmPasswordField.getText();
+            // Check register info validity
             boolean valid = checkRegisterInfo(name, username, password, confirmPassword);
-            Account userAccount = new Account(username, password, name);
             if(valid){
+                // If valid, create new Account object with register info
+                Account userAccount = new Account(username, password, name);
+                // Go to home screen
                 new HomeScreen(userAccount);
                 display.dispose();
             }

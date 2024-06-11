@@ -3,6 +3,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class SpecificClassScreen implements ActionListener {
@@ -22,6 +24,7 @@ public class SpecificClassScreen implements ActionListener {
         initializeFrame();
         adjustComponents();
         loadVariableData(course);
+        windowListener();
     }
     public static Course getSpecificCourse() {
         return specificCourse;
@@ -34,7 +37,7 @@ public class SpecificClassScreen implements ActionListener {
         classFrame.setTitle("MnM Uni Planner");
         classFrame.setLocationRelativeTo(null);
         classFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        classFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        classFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         classFrame.add(parentPanel);
         classFrame.setContentPane(parentPanel);
     }
@@ -85,14 +88,34 @@ public class SpecificClassScreen implements ActionListener {
         JOptionPane.showMessageDialog(null, "Average Score for " + specificCourse.getName() + ": " + average);
     }
 
+    private void windowListener(){
+        classFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                // Ask user to confirm exit when clicking exit button
+                int exitResponse = JOptionPane.showConfirmDialog(classFrame, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if(exitResponse == JOptionPane.YES_OPTION){
+                    // If user confirms exit, save data before closing window
+                    FileOperations.saveData();
+                    classFrame.dispose();
+                }
+            }
+        });
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backButton) {
-            classFrame.dispose();
+            // Go to ClassesScreen
             new ClassesScreen();
+            classFrame.dispose();
         }
         else if(e.getSource() == yourWorkButton){;
+            // Go to YourWorkScreen
             new YourWorkScreen(specificCourse);
+            classFrame.dispose();
         }
         else if(e.getSource() == calculateAverageButton){
             calculateAndDisplayAverage();
