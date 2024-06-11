@@ -101,6 +101,8 @@ public class Calendar extends JFrame implements ActionListener {
         savedData.put("TextArea13", saturdayBox2.getText());
         savedData.put("TextArea14", sundayBox2.getText());
 
+        HomeScreen.userAccount.updateCalendarData(savedData);
+
         // Print the saved data for verification
         savedData.forEach((key, value) -> {
             System.out.println(key + ": " + value);
@@ -117,6 +119,7 @@ public class Calendar extends JFrame implements ActionListener {
             dispose();
         }
         if (e.getSource() == backButton) {
+            // Go to HomeScreen
             new HomeScreen(HomeScreen.userAccount);
             dispose();
         }

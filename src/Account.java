@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Account {
     private String username;
@@ -6,6 +8,8 @@ public class Account {
     private String name;
     private ArrayList<Course> courseList = new ArrayList<>();
     private static ArrayList<Account> accountsList = new ArrayList<>();
+    private static Map<String, String> calendarData = new HashMap<>();
+
 
     public Account(String username, String password, String name){
         this.username = username;
@@ -36,5 +40,13 @@ public class Account {
 
     public void addCourse(Course course){
         courseList.add(course);
+    }
+
+    public void updateCalendarData(Map<String, String> saveData){
+        calendarData = saveData;
+    }
+
+    public Map<String, String> getCalendarData(){
+        return calendarData;
     }
 }
