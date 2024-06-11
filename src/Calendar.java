@@ -44,7 +44,7 @@ public class Calendar extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backButton){
-            new HomeScreen();
+            new HomeScreen(HomeScreen.userAccount);
             dispose();
         }
         else if(e.getSource() == saveButton){

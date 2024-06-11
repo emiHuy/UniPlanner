@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
 
 public class OpeningScreen implements ActionListener{
@@ -86,6 +87,16 @@ public class OpeningScreen implements ActionListener{
         return true;
     }
 
+    private Account checkLoginInfo(String username, String password){
+        ArrayList<Account> accountsList = Account.getAccountsList();
+        for(Account account: accountsList){
+            if(username.equals(account.getUsername()) && password.equals(account.getPassword())){
+                return account;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == loginButton || e.getSource() == toLoginButton){
@@ -103,9 +114,17 @@ public class OpeningScreen implements ActionListener{
         else if(e.getSource() == loginToMenuButton){
             String username = usernameField.getText();
             String password = passwordField.getText();
-            new HomeScreen();
-            display.dispose();
-            // proceed to home screen after checking existing files
+            Account userAccount = checkLoginInfo(username, password);
+            if(userAccount != null){
+                // proceed to home screen after checking existing files
+                new HomeScreen(userAccount);
+                display.dispose();
+            }
+            else{
+                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                JOptionPane.showMessageDialog(display, "Incorrect username or password.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
         else if(e.getSource() == createAccountButton){
             String name = nameField.getText();
@@ -113,8 +132,9 @@ public class OpeningScreen implements ActionListener{
             String password = createPasswordField.getText();
             String confirmPassword = confirmPasswordField.getText();
             boolean valid = checkRegisterInfo(name, username, password, confirmPassword);
+            Account userAccount = new Account(username, password, name);
             if(valid){
-                new HomeScreen();
+                new HomeScreen(userAccount);
                 display.dispose();
             }
         }

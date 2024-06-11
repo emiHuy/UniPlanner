@@ -12,6 +12,7 @@ public class ClassesScreen implements ActionListener{
     private JButton addClassButton;
     private JButton backButton;
     private ArrayList<JButton> classButtons = new ArrayList<>();
+    private Account userAccount = HomeScreen.userAccount;
 
     public ClassesScreen(){
         initializeFrame();
@@ -103,7 +104,7 @@ public class ClassesScreen implements ActionListener{
 
     private void createClassButtons(){
         //Retrieve courses
-        ArrayList<Course> courseList = Course.getCourseList();
+        ArrayList<Course> courseList = userAccount.getCourseList();
 
         // Set up buttons for each class
         for(Course course : courseList){
@@ -119,7 +120,7 @@ public class ClassesScreen implements ActionListener{
 
     private Course linearSearchCourse(String name){
         //Retrieve courses
-        ArrayList<Course> courseList = Course.getCourseList();
+        ArrayList<Course> courseList = userAccount.getCourseList();
 
         for(Course course : courseList){
             if(course.getName().equals(name)){
@@ -133,7 +134,7 @@ public class ClassesScreen implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == backButton){
-            new HomeScreen();
+            new HomeScreen(HomeScreen.userAccount);
             classesFrame.dispose();
         }
         else if(e.getSource() == calculateAvgButton){

@@ -9,10 +9,14 @@ public class HomeScreen implements ActionListener{
     private JButton calendarButton;
     private JButton studyGuideButton;
     private JButton xButton;
+    private JLabel welcomeLabel;
+    public static Account userAccount;
 
-    public HomeScreen() {
+    public HomeScreen(Account userAccount) {
+        this.userAccount = userAccount;
         initializeFrame();
         addActionListeners();
+        welcome();
     }
 
     private void initializeFrame(){
@@ -32,6 +36,10 @@ public class HomeScreen implements ActionListener{
         calendarButton.addActionListener(this);
         studyGuideButton.addActionListener(this);
         xButton.addActionListener(this);
+    }
+
+    private void welcome(){
+        welcomeLabel.setText("Hello, " + userAccount.getName());
     }
 
     @Override

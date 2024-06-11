@@ -66,7 +66,8 @@ public class AddClassScreen implements ActionListener {
             JOptionPane.showMessageDialog(addClassesFrame, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            new Course(courseName, courseCode);
+            Course course = new Course(courseName, courseCode);
+            HomeScreen.userAccount.addCourse(course);
             new ClassesScreen();
             addClassesFrame.dispose();
         }

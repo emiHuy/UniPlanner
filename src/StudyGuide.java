@@ -51,7 +51,7 @@ public class StudyGuide extends JFrame implements ActionListener{
             new Template("finance");
         }
         else if(e.getSource() == backButton){
-            new HomeScreen();
+            new HomeScreen(HomeScreen.userAccount);
             dispose();
         }
     }

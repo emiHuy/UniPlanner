@@ -35,7 +35,7 @@ public class AverageCalculator extends JFrame implements ActionListener{
         int totalCourses = 0;
 
         // Iterate over all courses
-        for (Course course : Course.getCourseList()) {
+        for (Course course : HomeScreen.userAccount.getCourseList()) {
             totalScore += course.calculateAverageScore();
             totalCourses++;
         }
