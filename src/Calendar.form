@@ -159,7 +159,7 @@
           <text value="SAVE"/>
         </properties>
       </component>
-      <component id="21fd6" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+      <component id="21fd6" class="javax.swing.JTextArea" binding="mondayBox">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -167,7 +167,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="35ca5" class="javax.swing.JTextArea" binding="textArea2" default-binding="true">
+      <component id="35ca5" class="javax.swing.JTextArea" binding="mondayBox2">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -175,7 +175,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="3cbe2" class="javax.swing.JTextArea" binding="textArea3" default-binding="true">
+      <component id="3cbe2" class="javax.swing.JTextArea" binding="tuesdayBox">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -183,7 +183,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="d555d" class="javax.swing.JTextArea" binding="textArea4" default-binding="true">
+      <component id="d555d" class="javax.swing.JTextArea" binding="tuesdayBox2">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -191,7 +191,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="d3a2" class="javax.swing.JTextArea" binding="textArea5" default-binding="true">
+      <component id="d3a2" class="javax.swing.JTextArea" binding="wednesdayBox">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -199,7 +199,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="eac61" class="javax.swing.JTextArea" binding="textArea6" default-binding="true">
+      <component id="eac61" class="javax.swing.JTextArea" binding="wednesdayBox2">
         <constraints>
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -207,7 +207,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="b9bf4" class="javax.swing.JTextArea" binding="textArea7" default-binding="true">
+      <component id="b9bf4" class="javax.swing.JTextArea" binding="thursdayBox">
         <constraints>
           <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -215,7 +215,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="eebab" class="javax.swing.JTextArea" binding="textArea8" default-binding="true">
+      <component id="eebab" class="javax.swing.JTextArea" binding="thursdayBox2">
         <constraints>
           <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -223,7 +223,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="ecf2c" class="javax.swing.JTextArea" binding="textArea9" default-binding="true">
+      <component id="ecf2c" class="javax.swing.JTextArea" binding="fridayBox">
         <constraints>
           <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -231,7 +231,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="6b9b9" class="javax.swing.JTextArea" binding="textArea10" default-binding="true">
+      <component id="6b9b9" class="javax.swing.JTextArea" binding="sundayBox">
         <constraints>
           <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -239,7 +239,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="2ffae" class="javax.swing.JTextArea" binding="textArea11" default-binding="true">
+      <component id="2ffae" class="javax.swing.JTextArea" binding="saturdayBox">
         <constraints>
           <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -247,7 +247,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="949af" class="javax.swing.JTextArea" binding="textArea12" default-binding="true">
+      <component id="949af" class="javax.swing.JTextArea" binding="fridayBox2">
         <constraints>
           <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -255,7 +255,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="474a0" class="javax.swing.JTextArea" binding="textArea13" default-binding="true">
+      <component id="474a0" class="javax.swing.JTextArea" binding="saturdayBox2">
         <constraints>
           <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -263,7 +263,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="53bd2" class="javax.swing.JTextArea" binding="textArea14" default-binding="true">
+      <component id="53bd2" class="javax.swing.JTextArea" binding="sundayBox2">
         <constraints>
           <grid row="5" column="7" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
