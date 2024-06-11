@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 
 public class HomeScreen implements ActionListener{
     private JFrame window;
@@ -15,7 +13,6 @@ public class HomeScreen implements ActionListener{
     private JButton xButton;
     private JLabel welcomeLabel;
     public static Account userAccount;
-    private  Map<String, String> savedData;
 
     public HomeScreen(Account userAccount) {
         this.userAccount = userAccount;
@@ -23,7 +20,6 @@ public class HomeScreen implements ActionListener{
         addActionListeners();
         welcome();
         windowListener();
-        this.savedData = new HashMap<>();
     }
 
     private void initializeFrame(){
@@ -75,8 +71,8 @@ public class HomeScreen implements ActionListener{
         }
         else if(e.getSource() == calendarButton){
             // Go to Calendar screen
-            System.out.print("load:"+savedData.toString());
-            new Calendar(savedData);
+            System.out.print("load:"+userAccount.getCalendarData().toString());
+            new Calendar(userAccount.getCalendarData());
             window.dispose();
         }
         else if(e.getSource() == studyGuideButton){

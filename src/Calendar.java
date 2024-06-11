@@ -25,6 +25,7 @@ public class Calendar extends JFrame implements ActionListener {
     private JTextArea saturdayBox2;
     private JTextArea sundayBox2;
     private  Map<String, String> savedData;
+
     public Calendar(Map<String, String> savedData) {
         this.savedData=savedData;
         initializeFrame();
@@ -49,7 +50,7 @@ public class Calendar extends JFrame implements ActionListener {
         saveButton.addActionListener(this);
     }
 
-    private void windowListener(){
+    private void windowListener() {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -57,14 +58,15 @@ public class Calendar extends JFrame implements ActionListener {
                 UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
                 // Ask user to confirm exit when clicking exit button
                 int exitResponse = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if(exitResponse == JOptionPane.YES_OPTION){
+                if (exitResponse == JOptionPane.YES_OPTION) {
                     // If user confirms exit, save data before closing window
                     FileOperations.saveData();
                     dispose();
                 }
             }
         });
-      
+    }
+
     private void loadSavedData() {
         System.out.println("Loading saved data...");
         mondayBox.setText(savedData.get("TextArea1"));
@@ -83,20 +85,6 @@ public class Calendar extends JFrame implements ActionListener {
         sundayBox2.setText(savedData.get("TextArea14"));
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == backButton){
-            // Go to HomeScreen
-            new HomeScreen(HomeScreen.userAccount);
-            dispose();
-        if (e.getSource() == backButton) {
-            new HomeScreen(HomeScreen.userAccount);
-            dispose();
-        } else if (e.getSource() == saveButton) {
-            saveInfo();
-        }
-    }
-
     private void saveInfo() {
         savedData.put("TextArea1", mondayBox.getText());
         savedData.put("TextArea2", mondayBox2.getText());
@@ -113,12 +101,31 @@ public class Calendar extends JFrame implements ActionListener {
         savedData.put("TextArea13", saturdayBox2.getText());
         savedData.put("TextArea14", sundayBox2.getText());
 
+        HomeScreen.userAccount.updateCalendarData(savedData);
+
         // Print the saved data for verification
         savedData.forEach((key, value) -> {
             System.out.println(key + ": " + value);
         });
         // Show a pop-up message to indicate that the data has been saved
         JOptionPane.showMessageDialog(this, "Data has been saved successfully!");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == backButton) {
+            // Go to HomeScreen
+            new HomeScreen(HomeScreen.userAccount);
+            dispose();
+        }
+        if (e.getSource() == backButton) {
+            // Go to HomeScreen
+            new HomeScreen(HomeScreen.userAccount);
+            dispose();
+        }
+        else if (e.getSource() == saveButton) {
+            saveInfo();
+        }
     }
 }
 
