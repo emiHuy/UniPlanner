@@ -3,6 +3,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class ClassesScreen implements ActionListener{
@@ -12,6 +14,7 @@ public class ClassesScreen implements ActionListener{
     private JButton addClassButton;
     private JButton backButton;
     private ArrayList<JButton> classButtons = new ArrayList<>();
+    private Account userAccount = HomeScreen.userAccount;
 
     public ClassesScreen(){
         initializeFrame();
@@ -19,6 +22,7 @@ public class ClassesScreen implements ActionListener{
         setupBottomPanel();
         setupCentralPanel();
         createClassButtons();
+        windowListener();
     }
 
     private void initializeFrame() {
@@ -28,7 +32,7 @@ public class ClassesScreen implements ActionListener{
         classesFrame.setTitle("MnM Uni Planner");
         classesFrame.setLocationRelativeTo(null);
         classesFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        classesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        classesFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         classesFrame.setLayout(new BorderLayout());
     }
 
@@ -103,7 +107,7 @@ public class ClassesScreen implements ActionListener{
 
     private void createClassButtons(){
         //Retrieve courses
-        ArrayList<Course> courseList = Course.getCourseList();
+        ArrayList<Course> courseList = userAccount.getCourseList();
 
         // Set up buttons for each class
         for(Course course : courseList){
@@ -119,28 +123,49 @@ public class ClassesScreen implements ActionListener{
 
     private Course linearSearchCourse(String name){
         //Retrieve courses
-        ArrayList<Course> courseList = Course.getCourseList();
+        ArrayList<Course> courseList = userAccount.getCourseList();
 
+        // Linear search through courses to find out the selected course
         for(Course course : courseList){
+            // Return course if course's name matches button text
             if(course.getName().equals(name)){
                 return course;
             }
         }
-        return new Course("", "");
+        return null;
     }
 
+    private void windowListener(){
+        classesFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                // Ask user to confirm exit when clicking exit button
+                int exitResponse = JOptionPane.showConfirmDialog(classesFrame, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if(exitResponse == JOptionPane.YES_OPTION){
+                    // If user confirms exit, save data before closing window
+                    FileOperations.saveData();
+                    classesFrame.dispose();
+                }
+            }
+        });
+    }
 
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == backButton){
-            new HomeScreen();
+            // Go to home screen
+            new HomeScreen(HomeScreen.userAccount);
             classesFrame.dispose();
         }
         else if(e.getSource() == calculateAvgButton){
-            // display dialog with calculated average or new screen?
+            // Go to AverageCalculator screen
             new AverageCalculator();
+            classesFrame.dispose();
         }
         else if(e.getSource() == addClassButton){
+            // Go to AddClassScreen
             new AddClassScreen();
             classesFrame.dispose();
         }
@@ -151,6 +176,7 @@ public class ClassesScreen implements ActionListener{
             Course course = linearSearchCourse(button.getText());
             // Go to corresponding course screen
             new SpecificClassScreen(course);
+            classesFrame.dispose();
         }
     }
 }

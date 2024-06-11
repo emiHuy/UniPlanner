@@ -3,13 +3,11 @@ import java.util.ArrayList;
 public class Course {
     private String name;
     private String courseCode;
-    private static ArrayList<Course> courseList = new ArrayList<Course>(); /// only temporary
     private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
 
     public Course(String aName, String aCode){
         name = aName;
         courseCode = aCode;
-        courseList.add(this);
     }
 
     public String getName(){
@@ -18,10 +16,6 @@ public class Course {
 
     public String getCode(){
         return courseCode;
-    }
-
-    public static ArrayList<Course> getCourseList(){
-        return new ArrayList<Course>(courseList);
     }
 
     public void addEvaluation(Evaluation evaluation) {
@@ -44,5 +38,4 @@ public class Course {
 
         return totalScore / evaluations.size();
     }
-
 }

@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -11,11 +13,16 @@ public class HomeScreen implements ActionListener{
     private JButton calendarButton;
     private JButton studyGuideButton;
     private JButton xButton;
+    private JLabel welcomeLabel;
+    public static Account userAccount;
     private  Map<String, String> savedData;
 
-    public HomeScreen() {
+    public HomeScreen(Account userAccount) {
+        this.userAccount = userAccount;
         initializeFrame();
         addActionListeners();
+        welcome();
+        windowListener();
         this.savedData = new HashMap<>();
     }
 
@@ -28,7 +35,7 @@ public class HomeScreen implements ActionListener{
         window.setLocationRelativeTo(null);
         window.setSize(1200, 1000);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     private void addActionListeners(){
@@ -38,19 +45,42 @@ public class HomeScreen implements ActionListener{
         xButton.addActionListener(this);
     }
 
+    private void welcome(){
+        welcomeLabel.setText("Hello, " + userAccount.getName());
+    }
+
+    private void windowListener(){
+        window.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                // Ask user to confirm exit when clicking exit button
+                int exitResponse = JOptionPane.showConfirmDialog(window, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if(exitResponse == JOptionPane.YES_OPTION){
+                    // If user confirms exit, save data before closing window
+                    FileOperations.saveData();
+                    window.dispose();
+                }
+            }
+        });
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == classesButton){
+            // Go to ClassesScreen
             new ClassesScreen();
             window.dispose();
         }
         else if(e.getSource() == calendarButton){
-
+            // Go to Calendar screen
             System.out.print("load:"+savedData.toString());
             new Calendar(savedData);
-            //window.dispose();
+            window.dispose();
         }
         else if(e.getSource() == studyGuideButton){
+            //Go to StudyGuide screen
             new StudyGuide();
             window.dispose();
         }
@@ -59,6 +89,8 @@ public class HomeScreen implements ActionListener{
             if (result == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
-        }}}
+        }
+    }
+}
 
 

@@ -3,6 +3,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class AddClassScreen implements ActionListener {
     private JFrame addClassesFrame;
@@ -20,6 +22,7 @@ public class AddClassScreen implements ActionListener {
     public AddClassScreen(){
         initializeFrame();
         adjustComponents();
+        windowListener();
     }
 
     private void initializeFrame() {
@@ -29,7 +32,7 @@ public class AddClassScreen implements ActionListener {
         addClassesFrame.setTitle("MnM Uni Planner");
         addClassesFrame.setLocationRelativeTo(null);
         addClassesFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        addClassesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addClassesFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addClassesFrame.add(parentPanel);
         addClassesFrame.setContentPane(parentPanel);
     }
@@ -57,19 +60,42 @@ public class AddClassScreen implements ActionListener {
     }
 
     private void collectInput(){
+        // Get user input from text fields
         String courseName = courseNameField.getText();
         String courseCode = courseCodeField.getText();
 
+        // Check user input collected from text fields if empty (is invalid)
         if(courseName.trim().isEmpty() || courseCode.trim().isEmpty()){
             UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
             UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
             JOptionPane.showMessageDialog(addClassesFrame, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            new Course(courseName, courseCode);
+            // If valid, create Course object with user input
+            Course course = new Course(courseName, courseCode);
+            // Add course to account's course list
+            HomeScreen.userAccount.addCourse(course);
+
             new ClassesScreen();
             addClassesFrame.dispose();
         }
+    }
+
+    private void windowListener(){
+        addClassesFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                // Ask user to confirm exit when clicking exit button
+                int exitResponse = JOptionPane.showConfirmDialog(addClassesFrame, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if(exitResponse == JOptionPane.YES_OPTION){
+                    // If user confirms exit, save data before closing window
+                    FileOperations.saveData();
+                    addClassesFrame.dispose();
+                }
+            }
+        });
     }
 
     @Override
