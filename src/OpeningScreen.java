@@ -64,6 +64,13 @@ public class OpeningScreen implements ActionListener{
     private boolean checkRegisterInfo(String name, String username, String password, String confirmPassword){
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
         UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+
+        for(Account account: Account.getAccountsList()){
+            if(username.equals(account.getUsername())){
+                JOptionPane.showMessageDialog(display, "Account already exists. Pick a different username.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+        }
         if(name.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
             JOptionPane.showMessageDialog(display, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
