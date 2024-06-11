@@ -26,12 +26,12 @@ public class Course {
         return new ArrayList<Evaluation>(evaluations);
     }
 
-    public float calculateAverageScore() {
+    public double calculateAverageScore() {
         if (evaluations.isEmpty()) {
             return 0; // Return 0 if there are no evaluations
         }
 
-        float totalScore = 0;
+        double totalScore = 0;
         for (Evaluation evaluation : evaluations) {
             totalScore += evaluation.getEvaluationScore();
         }

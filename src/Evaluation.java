@@ -3,9 +3,10 @@ import java.util.Date;
 
 public class Evaluation {
     public String evaluationName;
-    private float evaluationScore;
+    private double evaluationScore;
     private Date evaluationDate;
-    public Evaluation(String evaluationName, float evaluationScore, Date evaluationDate) {
+
+    public Evaluation(String evaluationName, double evaluationScore, Date evaluationDate) {
         this.evaluationName = evaluationName;
         this.evaluationScore = evaluationScore;
         this.evaluationDate = evaluationDate;
@@ -15,7 +16,7 @@ public class Evaluation {
         return evaluationName;
     }
 
-    public float getEvaluationScore() {
+    public double getEvaluationScore() {
         return evaluationScore;
     }
 

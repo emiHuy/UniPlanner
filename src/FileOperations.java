@@ -142,7 +142,7 @@ public class FileOperations {
         // Initialize local variables
         String[] evaluationInfo;
         int count = 0;
-        float mark;
+        double mark;
         String name;
         Date date;
 
@@ -151,7 +151,7 @@ public class FileOperations {
             evaluationInfo = evaluationsSplit[count++].split(", ");
             name = evaluationInfo[0];
             date = readEvalDate(evaluationInfo[1]);
-            mark = Float.parseFloat(evaluationInfo[2]);
+            mark = Double.parseDouble(evaluationInfo[2]);
             // With evaluation data, create a new Evaluation object
             Evaluation eval = new Evaluation(name, mark, date);
             course.addEvaluation(eval);
