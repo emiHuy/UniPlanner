@@ -57,7 +57,7 @@ public class AssignmentAddScreen extends JFrame implements ActionListener{
         }
         try {
             Date evaluationDate = new SimpleDateFormat("yyyy-MM-dd").parse(evaluationDateStr);
-            float evaluationScore = Float.parseFloat(evaluationScoreStr);
+            double evaluationScore = Double.parseDouble(evaluationScoreStr);
 
             // Check if mark is valid
             if (evaluationScore < 0 || evaluationScore > 100) {

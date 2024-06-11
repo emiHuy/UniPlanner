@@ -133,6 +133,13 @@ public class OpeningScreen implements ActionListener{
             // Check login info
             Account userAccount = checkLoginInfo(username, password);
 
+            UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+            UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+
+            if(username.isEmpty() || password.isEmpty()){
+                // Display input error message
+                JOptionPane.showMessageDialog(display, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+            }
             // If valid,
             if(userAccount != null){
                 // read and retrieve user's account data from the saved file
@@ -142,8 +149,6 @@ public class OpeningScreen implements ActionListener{
                 display.dispose();
             }
             else{
-                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
-                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
                 // Display input error message
                 JOptionPane.showMessageDialog(display, "Incorrect username or password.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             }

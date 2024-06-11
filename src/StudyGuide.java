@@ -62,15 +62,19 @@ public class StudyGuide extends JFrame implements ActionListener{
         // Open template screen and take in template type, which is dependent on button clicked, as parameter
         if(e.getSource() == essayButton){
             new Template("essay");
+            dispose();
         }
         else if(e.getSource() == projectButton){
             new Template("project");
+            dispose();
         }
         else if(e.getSource() == subjectButton){
             new Template("subject");
+            dispose();
         }
         else if(e.getSource() == financeButton){
             new Template("finance");
+            dispose();
         }
         else if(e.getSource() == backButton){
             new HomeScreen(HomeScreen.userAccount);
