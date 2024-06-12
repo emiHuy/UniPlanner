@@ -118,11 +118,6 @@ public class Calendar extends JFrame implements ActionListener {
             new HomeScreen(HomeScreen.userAccount);
             dispose();
         }
-        if (e.getSource() == backButton) {
-            // Go to HomeScreen
-            new HomeScreen(HomeScreen.userAccount);
-            dispose();
-        }
         else if (e.getSource() == saveButton) {
             saveInfo();
         }
