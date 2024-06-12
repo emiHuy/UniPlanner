@@ -60,6 +60,7 @@ public class AddClassScreen implements ActionListener {
     }
 
     private void collectInput(){
+        // Setting dialog fonts and font sizes
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
         UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
 
