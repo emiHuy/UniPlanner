@@ -60,14 +60,27 @@ public class AddClassScreen implements ActionListener {
     }
 
     private void collectInput(){
+        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
+        UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+
         // Get user input from text fields
         String courseName = courseNameField.getText();
         String courseCode = courseCodeField.getText();
 
+        // Check if existing course already has inputted course name or course code
+        for(Course course: HomeScreen.userAccount.getCourseList()){
+            if(courseName.equals(course.getName())){
+                JOptionPane.showMessageDialog(addClassesFrame, "Another course already has this name.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            else if(courseCode.equals(course.getCode())){
+                JOptionPane.showMessageDialog(addClassesFrame, "Another course already has this course code.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+
         // Check user input collected from text fields if empty (is invalid)
         if(courseName.trim().isEmpty() || courseCode.trim().isEmpty()){
-            UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
-            UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
             JOptionPane.showMessageDialog(addClassesFrame, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
