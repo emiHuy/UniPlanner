@@ -106,6 +106,9 @@ public class ClassesScreen implements ActionListener{
     }
 
     private void createClassButtons(){
+
+        // Sort the course list alphabetically
+        userAccount.bubbleSortCourseList();
         //Retrieve courses
         ArrayList<Course> courseList = userAccount.getCourseList();
 
