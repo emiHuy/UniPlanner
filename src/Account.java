@@ -41,7 +41,18 @@ public class Account {
     public void addCourse(Course course){
         courseList.add(course);
     }
-
+    public void bubbleSortCourseList() {
+        int n = courseList.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (courseList.get(j).getName().compareTo(courseList.get(j + 1).getName()) > 0) {
+                    Course temp = courseList.get(j);
+                    courseList.set(j, courseList.get(j + 1));
+                    courseList.set(j + 1, temp);
+                }
+            }
+        }
+    }
     public void updateCalendarData(Map<String, String> saveData){
         calendarData = saveData;
     }
