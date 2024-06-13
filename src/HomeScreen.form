@@ -19,15 +19,6 @@
           <text value="MnM Uni Planner"/>
         </properties>
       </component>
-      <component id="762da" class="javax.swing.JButton" binding="xButton" default-binding="true">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-3881780"/>
-          <text value="X"/>
-        </properties>
-      </component>
       <component id="bd5ac" class="javax.swing.JLabel">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="6" fill="0" indent="0" use-parent-layout="false"/>

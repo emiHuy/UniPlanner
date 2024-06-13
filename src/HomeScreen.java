@@ -38,7 +38,6 @@ public class HomeScreen implements ActionListener{
         classesButton.addActionListener(this);
         calendarButton.addActionListener(this);
         studyGuideButton.addActionListener(this);
-        xButton.addActionListener(this);
     }
 
     private void welcome(){
@@ -79,12 +78,6 @@ public class HomeScreen implements ActionListener{
             //Go to StudyGuide screen
             new StudyGuide();
             window.dispose();
-        }
-        else if(e.getSource() == xButton){
-            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "confirm", JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
         }
     }
 }

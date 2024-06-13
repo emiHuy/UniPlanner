@@ -156,18 +156,21 @@ public class ClassesScreen implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == backButton){
             // Go to home screen
-            new HomeScreen(HomeScreen.userAccount);
             classesFrame.dispose();
+            new HomeScreen(HomeScreen.userAccount);
+
         }
         else if(e.getSource() == calculateAvgButton){
             // Go to AverageCalculator screen
-            new AverageCalculator();
             classesFrame.dispose();
+            new AverageCalculator();
+
         }
         else if(e.getSource() == addClassButton){
             // Go to AddClassScreen
-            new AddClassScreen();
             classesFrame.dispose();
+            new AddClassScreen();
+
         }
         else{
             // Get button that was clicked

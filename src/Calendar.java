@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -115,8 +117,9 @@ public class Calendar extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
             // Go to HomeScreen
-            new HomeScreen(HomeScreen.userAccount);
             dispose();
+            new HomeScreen(HomeScreen.userAccount);
+
         }
         else if (e.getSource() == saveButton) {
             saveInfo();

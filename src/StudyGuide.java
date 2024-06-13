@@ -77,8 +77,9 @@ public class StudyGuide extends JFrame implements ActionListener{
             dispose();
         }
         else if(e.getSource() == backButton){
-            new HomeScreen(HomeScreen.userAccount);
             dispose();
+            new HomeScreen(HomeScreen.userAccount);
+
         }
     }
 }
