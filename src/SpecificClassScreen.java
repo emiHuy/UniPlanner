@@ -83,9 +83,10 @@ public class SpecificClassScreen implements ActionListener {
 
         // Calculate average
         double average = count > 0 ? totalScore / count : 0;
+        double averageRounded=Math.round(average * 100) / 100.0;
 
         // Display a dialog with the calculated average
-        JOptionPane.showMessageDialog(null, "Average Score for " + specificCourse.getName() + ": " + average);
+        JOptionPane.showMessageDialog(null, "Average Score for " + specificCourse.getName() + ": " + averageRounded+"%");
     }
 
     private void windowListener(){
