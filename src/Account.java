@@ -8,7 +8,7 @@ public class Account {
     private String name;
     private ArrayList<Course> courseList = new ArrayList<>();
     private static ArrayList<Account> accountsList = new ArrayList<>();
-    private static Map<String, String> calendarData = new HashMap<>();
+    private static Map<String, String> calendarData;
 
 
     public Account(String username, String password, String name){
@@ -54,10 +54,28 @@ public class Account {
         }
     }
     public void updateCalendarData(Map<String, String> saveData){
-        calendarData = saveData;
+        calendarData = new HashMap<>(saveData);
     }
 
     public Map<String, String> getCalendarData(){
-        return calendarData;
+        return new HashMap<>(calendarData);
+    }
+
+    public void initializeTextAreas(){
+        calendarData = new HashMap<>();
+        calendarData.put("TextArea1", "");
+        calendarData.put("TextArea2", "");
+        calendarData.put("TextArea3", "");
+        calendarData.put("TextArea4", "");
+        calendarData.put("TextArea5", "");
+        calendarData.put("TextArea6", "");
+        calendarData.put("TextArea7", "");
+        calendarData.put("TextArea8", "");
+        calendarData.put("TextArea9", "");
+        calendarData.put("TextArea10", "");
+        calendarData.put("TextArea11", "");
+        calendarData.put("TextArea12", "");
+        calendarData.put("TextArea13", "");
+        calendarData.put("TextArea14", "");
     }
 }

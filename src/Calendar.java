@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Calendar extends JFrame implements ActionListener {
@@ -29,7 +30,7 @@ public class Calendar extends JFrame implements ActionListener {
     private  Map<String, String> savedData;
 
     public Calendar(Map<String, String> savedData) {
-        this.savedData=savedData;
+        this.savedData= new HashMap<>(savedData);
         initializeFrame();
         addActionListeners();
         windowListener();
@@ -70,7 +71,6 @@ public class Calendar extends JFrame implements ActionListener {
     }
 
     private void loadSavedData() {
-        System.out.println("Loading saved data...");
         mondayBox.setText(savedData.get("TextArea1"));
         mondayBox2.setText(savedData.get("TextArea2"));
         tuesdayBox.setText(savedData.get("TextArea3"));
@@ -105,10 +105,6 @@ public class Calendar extends JFrame implements ActionListener {
 
         HomeScreen.userAccount.updateCalendarData(savedData);
 
-        // Print the saved data for verification
-        savedData.forEach((key, value) -> {
-            System.out.println(key + ": " + value);
-        });
         // Show a pop-up message to indicate that the data has been saved
         JOptionPane.showMessageDialog(this, "Data has been saved successfully!");
     }
@@ -119,7 +115,6 @@ public class Calendar extends JFrame implements ActionListener {
             // Go to HomeScreen
             dispose();
             new HomeScreen(HomeScreen.userAccount);
-
         }
         else if (e.getSource() == saveButton) {
             saveInfo();

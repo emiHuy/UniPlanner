@@ -165,6 +165,7 @@ public class OpeningScreen implements ActionListener{
                 // If valid, create new Account object with register info
                 Account userAccount = new Account(username, password, name);
                 // Go to home screen
+                userAccount.initializeTextAreas();
                 new HomeScreen(userAccount);
                 display.dispose();
             }

@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class HomeScreen implements ActionListener{
     private JFrame window;
@@ -70,7 +71,6 @@ public class HomeScreen implements ActionListener{
         }
         else if(e.getSource() == calendarButton){
             // Go to Calendar screen
-            System.out.print("load:"+userAccount.getCalendarData().toString());
             new Calendar(userAccount.getCalendarData());
             window.dispose();
         }
