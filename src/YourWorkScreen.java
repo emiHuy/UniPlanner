@@ -37,12 +37,14 @@ public class YourWorkScreen extends JFrame implements ActionListener{
 
     private void setupTable(){
         String[] columnNames = {"Evaluation Name", "Score", "Date"};
-        table1.setModel(new DefaultTableModel(new Object[][]{}, columnNames)); // Set font for table headers
+        table1.setModel(new DefaultTableModel(new Object[][]{}, columnNames));
     }
 
     private void populateTable() {
         // Retrieve evaluations for the specific course
         ArrayList<Evaluation> evaluations = specificCourse.getEvaluations();
+        // Sort evaluations by date using merge sort
+        evaluations = mergeSortEvaluations(evaluations);
 
         // Create a two-dimensional array to hold the data
         Object[][] data = new Object[evaluations.size()][3];
@@ -64,6 +66,41 @@ public class YourWorkScreen extends JFrame implements ActionListener{
         // Set the table model to the JTable
         table1.setModel(model);
     }
+    private ArrayList<Evaluation> mergeSortEvaluations(ArrayList<Evaluation> evaluations) {
+        if (evaluations.size() <= 1) {
+            return evaluations;
+        }
+
+        int mid = evaluations.size() / 2;
+        ArrayList<Evaluation> left = new ArrayList<>(evaluations.subList(0, mid));
+        ArrayList<Evaluation> right = new ArrayList<>(evaluations.subList(mid, evaluations.size()));
+
+        return merge(mergeSortEvaluations(left), mergeSortEvaluations(right));
+    }
+
+    private ArrayList<Evaluation> merge(ArrayList<Evaluation> left, ArrayList<Evaluation> right) {
+        ArrayList<Evaluation> merged = new ArrayList<>();
+        int leftIndex = 0, rightIndex = 0;
+
+        while (leftIndex < left.size() && rightIndex < right.size()) {
+            if (left.get(leftIndex).getEvaluationDate().before(right.get(rightIndex).getEvaluationDate())) {
+                merged.add(left.get(leftIndex++));
+            } else {
+                merged.add(right.get(rightIndex++));
+            }
+        }
+
+        while (leftIndex < left.size()) {
+            merged.add(left.get(leftIndex++));
+        }
+
+        while (rightIndex < right.size()) {
+            merged.add(right.get(rightIndex++));
+        }
+
+        return merged;
+    }
+
 
     private void windowListener(){
         addWindowListener(new WindowAdapter() {

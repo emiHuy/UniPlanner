@@ -73,13 +73,23 @@ public class OpeningScreen implements ActionListener{
         }
 
         // Check if any fields are empty
-        if(name.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+        if(name.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             JOptionPane.showMessageDialog(display, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
+        }
+            // Check if name length is invalid
+        else if(name.length() > 12 || name.length() < 1 ){
+                JOptionPane.showMessageDialog(display, "Name must be from 1 to 12 characters long.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+                return false;
         }
         // Check if name is not alphabetical
         else if(!name.matches("[a-zA-Z]+")){
             JOptionPane.showMessageDialog(display, "Name can only consist of alphabetical characters.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        // Check if username length is invalid
+        else if(username.length() > 12 || username.length() < 6) {
+            JOptionPane.showMessageDialog(display, "Username must be from 6 to 12 characters long.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         // Check if username contains special characters
