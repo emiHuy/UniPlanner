@@ -3,6 +3,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FileOperations {
     public static void saveData(){
@@ -23,6 +25,12 @@ public class FileOperations {
             FileWriter fileWrite = new FileWriter(file, false);
 
             BufferedWriter buffWrite = new BufferedWriter(fileWrite);
+
+            for(Map.Entry<String,String> entry: HomeScreen.userAccount.getCalendarData().entrySet()){
+                buffWrite.write(entry.getKey() + "|,|" + entry.getValue()+"|.|");
+                }
+            buffWrite.newLine();
+
             for(Course course: HomeScreen.userAccount.getCourseList()){
                 buffWrite.write(course.getName() + ", " + course.getCode() + ": ");
                 for(Evaluation evaluation: course.getEvaluations()){
@@ -95,10 +103,15 @@ public class FileOperations {
             FileReader fileRead = new FileReader(file);
 
             BufferedReader buffRead = new BufferedReader(fileRead);
+
             String line;
             String[] lineSplit;
             String[] courseInfo;
             String[] courseEvaluations;
+
+            line = buffRead.readLine();
+            readCalendarData(line, userAccount);
+
             // Read data from user-specific text file, line by line
             while((line = buffRead.readLine()) != null){
                 lineSplit = line.split(": ");
@@ -169,5 +182,27 @@ public class FileOperations {
         }
         // Return date in date format
         return date;
+    }
+
+    private static void readCalendarData(String line, Account userAccount){
+        Map<String, String> calendarData = new HashMap<>();
+        String[] entryList = line.split("\\|\\.\\|");
+        String[] splitEntry;
+        String entryName;
+        String entryText;
+        int count = 0;
+        for(String entry: entryList){
+            splitEntry = entryList[count++].split("\\|\\,\\|");
+            if(splitEntry.length == 1){
+                entryName = splitEntry[0];
+                calendarData.put(entryName, "");
+            }
+            else{
+                entryName = splitEntry[0];
+                entryText = splitEntry[1];
+                calendarData.put(entryName, entryText);
+            }
+        }
+        userAccount.updateCalendarData(calendarData);
     }
 }
