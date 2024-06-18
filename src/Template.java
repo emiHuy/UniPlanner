@@ -34,7 +34,7 @@ public class Template extends JFrame implements ActionListener{
 
     private void updateLabel(String status) {
         // Initialize possible template image icons
-        ImageIcon essay = new ImageIcon("EssayPlanner.png");
+        ImageIcon essay = new ImageIcon("EssayPlanner.jpg");
         ImageIcon project = new ImageIcon("ProjectPlanner.png");
         ImageIcon subject = new ImageIcon("SubjectPlanner.png");
         ImageIcon finance = new ImageIcon("FinancePlanner.png");
