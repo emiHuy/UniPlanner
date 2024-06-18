@@ -17,7 +17,7 @@
           <component id="a7c2a" class="javax.swing.JLabel" binding="topPlannerName">
             <constraints/>
             <properties>
-              <font name="Courier New" size="25"/>
+              <font name="Courier New"/>
               <foreground color="-16718561"/>
               <text value="MnM Uni Planner"/>
             </properties>
@@ -42,7 +42,7 @@
           <component id="aedac" class="javax.swing.JLabel" binding="bottomPlannerName">
             <constraints/>
             <properties>
-              <font name="Courier New" size="25"/>
+              <font name="Courier New"/>
               <foreground color="-16718561"/>
               <text value="MnM Uni Planner"/>
             </properties>
