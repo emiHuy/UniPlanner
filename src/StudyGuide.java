@@ -14,7 +14,6 @@ public class StudyGuide extends JFrame implements ActionListener{
     private JTabbedPane tabbedPane1;
     private JButton backButton;
     private JLabel imageLabel;
-    private String status= "";
 
     public StudyGuide() {
         initializeFrame();
@@ -23,7 +22,7 @@ public class StudyGuide extends JFrame implements ActionListener{
     }
 
     private void initializeFrame(){
-        setSize(1200, 1000);
+        setSize(1920, 1080);
         setContentPane(studyGuide);
         setTitle("study-guide");
         setVisible(true);

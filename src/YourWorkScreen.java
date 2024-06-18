@@ -24,8 +24,8 @@ public class YourWorkScreen extends JFrame implements ActionListener{
         setContentPane(yourWork);
         setVisible(true);
         setTitle("Your Work Screen");
+        setSize(1920,1080);
         setLocationRelativeTo(null);
-        setSize(1200,1000);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }

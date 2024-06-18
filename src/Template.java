@@ -20,6 +20,8 @@ public class Template extends JFrame implements ActionListener{
 
     private void initializeFrame(){
         setTitle("Essay Planner");
+        setSize(1920,1080);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Dispose the window instead of exiting the application
         setVisible(true); // Make the window visible
         setContentPane(essayPanel);

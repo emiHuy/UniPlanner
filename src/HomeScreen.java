@@ -29,8 +29,8 @@ public class HomeScreen implements ActionListener{
         window.setContentPane(homePanel);
         window.setVisible(true);
         window.setTitle("MnM Uni Planner");
+        window.setSize(1920, 1080);
         window.setLocationRelativeTo(null);
-        window.setSize(1200, 1000);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }

@@ -34,7 +34,7 @@ public class OpeningScreen implements ActionListener{
 
     private void intializeFrame(){
         display = new JFrame();
-        display.setSize(1000, 1100);
+        display.setSize(950, 1100);
         display.add(startPanel);
         display.setContentPane(startPanel);
         display.setVisible(true);

@@ -27,6 +27,7 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
 
     private void initializeFrame() {
         add(project);
+        setSize(1920, 1080);
         setContentPane(project);
         setVisible(true);
         setTitle("Your Work Screen");

@@ -27,7 +27,7 @@ public class ClassesScreen implements ActionListener{
 
     private void initializeFrame() {
         classesFrame = new JFrame();
-        classesFrame.setSize(1200, 1000);
+        classesFrame.setSize(1920, 1080);
         classesFrame.setVisible(true);
         classesFrame.setTitle("MnM Uni Planner");
         classesFrame.setLocationRelativeTo(null);
