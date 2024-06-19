@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,11 +11,12 @@ public class Template extends JFrame implements ActionListener{
     private JPanel essayPanel;
     private JLabel templateImage;
     private JButton backButton;
+    private JLabel header;
 
-    public Template(String status) {
+    public Template(String type) {
         initializeFrame();
-        addActionListeners();
-        updateLabel(status);
+        setupBackButton();
+        updateLabel(type);
         windowListener();
     }
 
@@ -28,35 +30,41 @@ public class Template extends JFrame implements ActionListener{
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Set the JFrame to be maximized
     }
 
-    private void addActionListeners(){
+    private void setupBackButton(){
+        backButton.setIcon(new ImageIcon("back button icon.png"));
+        backButton.setFocusPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setBorder(new EmptyBorder(20, 20, 20, 20));
         backButton.addActionListener(this);
     }
 
-    private void updateLabel(String status) {
+    private void updateLabel(String type) {
         // Initialize possible template image icons
         ImageIcon essay = new ImageIcon("EssayPlanner.jpg");
-        ImageIcon project = new ImageIcon("ProjectPlanner.png");
-        ImageIcon subject = new ImageIcon("SubjectPlanner.png");
-        ImageIcon finance = new ImageIcon("FinancePlanner.png");
+        ImageIcon project = new ImageIcon("ProjectPlanner.jpg");
+        ImageIcon subject = new ImageIcon("SubjectPlanner.jpg");
+        ImageIcon finance = new ImageIcon("FinancePlanner.jpg");
 
         // Set template image based off button that was clicked
-        switch (status) {
-            case "essay":
+        switch (type) {
+            case "Essay":
                 templateImage.setIcon(essay);
                 break;
-            case "project":
+            case "Project":
                 templateImage.setIcon(project);
                 break;
-            case "subject":
+            case "Subject":
                 templateImage.setIcon(subject);
                 break;
-            case "finance":
+            case "Finance":
                 templateImage.setIcon(finance);
                 break;
             default:
-                System.out.println("Invalid status: " + status); // Debugging statement for unknown status
+                System.out.println("Invalid status: " + type); // Debugging statement for unknown status
                 break;
         }
+
+        header.setText(type + " Planner");
     }
 
     private void windowListener(){
