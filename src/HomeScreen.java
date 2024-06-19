@@ -1,9 +1,9 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 public class HomeScreen implements ActionListener{
     private JFrame window;
@@ -13,11 +13,15 @@ public class HomeScreen implements ActionListener{
     private JButton studyGuideButton;
     private JButton xButton;
     private JLabel welcomeLabel;
+    private JButton classesIconButton;
+    private JButton calendarIconButton;
+    private JButton studyGuideIconButton;
     public static Account userAccount;
 
     public HomeScreen(Account userAccount) {
         this.userAccount = userAccount;
         initializeFrame();
+        createButtons();
         addActionListeners();
         welcome();
         windowListener();
@@ -29,16 +33,46 @@ public class HomeScreen implements ActionListener{
         window.setContentPane(homePanel);
         window.setVisible(true);
         window.setTitle("MnM Uni Planner");
+        window.setSize(1920, 1080);
         window.setLocationRelativeTo(null);
-        window.setSize(1200, 1000);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+    }
+
+    private void createButtons(){
+        classesIconButton.setIcon(new ImageIcon("classes icon.png"));
+        calendarIconButton.setIcon(new ImageIcon("calendar icon.png"));
+        studyGuideIconButton.setIcon(new ImageIcon("study guide icon.png"));
+
+        classesIconButton.setBorder(new EmptyBorder(0,0,50,0));
+        calendarIconButton.setBorder(new EmptyBorder(0,0,50,0));
+        studyGuideIconButton.setBorder(new EmptyBorder(0,0,50,0));
+        classesButton.setBorder(new EmptyBorder(0,0,0,0));
+        calendarButton.setBorder(new EmptyBorder(0,0,0,0));
+        studyGuideButton.setBorder(new EmptyBorder(0,0,0,0));
+
+        classesIconButton.setFocusPainted(false);
+        calendarIconButton.setFocusPainted(false);
+        studyGuideIconButton.setFocusPainted(false);
+        classesButton.setFocusPainted(false);
+        calendarButton.setFocusPainted(false);
+        studyGuideButton.setFocusPainted(false);
+
+        classesIconButton.setContentAreaFilled(false);
+        calendarIconButton.setContentAreaFilled(false);
+        studyGuideIconButton.setContentAreaFilled(false);
+        classesButton.setContentAreaFilled(false);
+        calendarButton.setContentAreaFilled(false);
+        studyGuideButton.setContentAreaFilled(false);
     }
 
     private void addActionListeners(){
         classesButton.addActionListener(this);
         calendarButton.addActionListener(this);
         studyGuideButton.addActionListener(this);
+        classesIconButton.addActionListener(this);
+        calendarIconButton.addActionListener(this);
+        studyGuideIconButton.addActionListener(this);
     }
 
     private void welcome(){
@@ -64,22 +98,20 @@ public class HomeScreen implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == classesButton){
+        if(e.getSource() == classesButton || e.getSource() == classesIconButton){
             // Go to ClassesScreen
             new ClassesScreen();
             window.dispose();
         }
-        else if(e.getSource() == calendarButton){
+        else if(e.getSource() == calendarButton || e.getSource() == calendarIconButton){
             // Go to Calendar screen
             new Calendar(userAccount.getCalendarData());
             window.dispose();
         }
-        else if(e.getSource() == studyGuideButton){
+        else if(e.getSource() == studyGuideButton || e.getSource() == studyGuideIconButton){
             //Go to StudyGuide screen
             new StudyGuide();
             window.dispose();
         }
     }
 }
-
-

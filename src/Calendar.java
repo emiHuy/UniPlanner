@@ -38,7 +38,7 @@ public class Calendar extends JFrame implements ActionListener {
     }
 
     private void initializeFrame() {
-        setSize(1200, 1000);
+        setSize(1920, 1080);
         setContentPane(calendar);
         setTitle("calendar");
         setVisible(true);

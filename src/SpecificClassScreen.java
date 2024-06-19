@@ -32,7 +32,7 @@ public class SpecificClassScreen implements ActionListener {
 
     private void initializeFrame() {
         classFrame = new JFrame();
-        classFrame.setSize(1200, 1000);
+        classFrame.setSize(1920, 1080);
         classFrame.setVisible(true);
         classFrame.setTitle("MnM Uni Planner");
         classFrame.setLocationRelativeTo(null);

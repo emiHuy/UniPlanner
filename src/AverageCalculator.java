@@ -22,8 +22,8 @@ public class AverageCalculator extends JFrame implements ActionListener{
         setContentPane(calc);
         setVisible(true);
         setTitle("Your overall average");
+        setSize(1920, 1080);
         setLocationRelativeTo(null);
-        setSize(1200, 1000);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }

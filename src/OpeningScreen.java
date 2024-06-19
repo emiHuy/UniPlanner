@@ -34,7 +34,7 @@ public class OpeningScreen implements ActionListener{
 
     private void intializeFrame(){
         display = new JFrame();
-        display.setSize(1000, 1100);
+        display.setSize(950, 1100);
         display.add(startPanel);
         display.setContentPane(startPanel);
         display.setVisible(true);
@@ -52,12 +52,16 @@ public class OpeningScreen implements ActionListener{
         toRegisterButton.addActionListener(this);
         loginToMenuButton.addActionListener(this);
         toRegisterButton.setBorder(new EmptyBorder(0,0,0,0));
+        toRegisterButton.setContentAreaFilled(false);
+        toRegisterButton.setFocusPainted(false);
     }
 
     private void registerScreen(){
         createAccountButton.addActionListener(this);
         toLoginButton.addActionListener(this);
         toLoginButton.setBorder(new EmptyBorder(0,0,0,0));
+        toLoginButton.setContentAreaFilled(false);
+        toLoginButton.setFocusPainted(false);
     }
 
     // Returns false if any registering input is invalid

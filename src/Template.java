@@ -20,6 +20,8 @@ public class Template extends JFrame implements ActionListener{
 
     private void initializeFrame(){
         setTitle("Essay Planner");
+        setSize(1920,1080);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Dispose the window instead of exiting the application
         setVisible(true); // Make the window visible
         setContentPane(essayPanel);
@@ -32,7 +34,7 @@ public class Template extends JFrame implements ActionListener{
 
     private void updateLabel(String status) {
         // Initialize possible template image icons
-        ImageIcon essay = new ImageIcon("EssayPlanner.png");
+        ImageIcon essay = new ImageIcon("EssayPlanner.jpg");
         ImageIcon project = new ImageIcon("ProjectPlanner.png");
         ImageIcon subject = new ImageIcon("SubjectPlanner.png");
         ImageIcon finance = new ImageIcon("FinancePlanner.png");

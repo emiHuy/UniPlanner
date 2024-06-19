@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class AddClassScreen implements ActionListener {
+public class AddClassScreen implements ActionListener{
     private JFrame addClassesFrame;
     private JButton addClassButton;
     private JPanel borderPanel;
@@ -27,7 +27,7 @@ public class AddClassScreen implements ActionListener {
 
     private void initializeFrame() {
         addClassesFrame = new JFrame();
-        addClassesFrame.setSize(1200, 1000);
+        addClassesFrame.setSize(1920, 1080);
         addClassesFrame.setVisible(true);
         addClassesFrame.setTitle("MnM Uni Planner");
         addClassesFrame.setLocationRelativeTo(null);
