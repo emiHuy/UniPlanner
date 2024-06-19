@@ -138,6 +138,26 @@ public class ClassesScreen implements ActionListener{
         return null;
     }
 
+    private void calculateAndDisplayAverage() {
+        // Calculate the average score of all classes combined
+        double totalScore = 0;
+        int totalCourses = 0;
+
+        // Iterate over all courses
+        for (Course course : HomeScreen.userAccount.getCourseList()) {
+            totalScore += course.calculateAverageScore();
+            totalCourses++;
+        }
+
+        // Calculate the average score
+        double averageScore = totalCourses > 0 ? totalScore / totalCourses : 0;
+        //rounded
+        double averageScoreRounded= Math.round(averageScore * 100) / 100.0;
+
+        // Display the overall average score in JDialog
+        JOptionPane.showMessageDialog(null, "Overall average for all classes combined: " + averageScoreRounded+"%");
+    }
+
     private void windowListener(){
         classesFrame.addWindowListener(new WindowAdapter() {
             @Override
@@ -161,19 +181,15 @@ public class ClassesScreen implements ActionListener{
             // Go to home screen
             classesFrame.dispose();
             new HomeScreen(HomeScreen.userAccount);
-
         }
         else if(e.getSource() == calculateAvgButton){
-            // Go to AverageCalculator screen
-            classesFrame.dispose();
-            new AverageCalculator();
-
+            // Calculate overall average and display it
+            calculateAndDisplayAverage();
         }
         else if(e.getSource() == addClassButton){
             // Go to AddClassScreen
             classesFrame.dispose();
             new AddClassScreen();
-
         }
         else{
             // Get button that was clicked
