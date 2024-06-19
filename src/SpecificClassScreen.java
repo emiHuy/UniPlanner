@@ -17,6 +17,8 @@ public class SpecificClassScreen implements ActionListener {
     private JLabel header;
     private JButton yourWorkButton;
     private JButton calculateAverageButton;
+    private JButton yourWorkIcon;
+    private JButton calculatorIcon;
     private static Course specificCourse;
 
     public SpecificClassScreen(Course course){
