@@ -7,8 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
-public class SpecificClassScreen implements ActionListener {
-    private JFrame classFrame;
+public class SpecificClassScreen extends JFrame implements ActionListener {
     private JPanel parentPanel;
     private JLabel topPlannerName;
     private JButton backButton;
@@ -17,50 +16,58 @@ public class SpecificClassScreen implements ActionListener {
     private JLabel header;
     private JButton yourWorkButton;
     private JButton calculateAverageButton;
-    private static Course specificCourse;
+    private JButton yourWorkIcon;
+    private JButton calculatorIcon;
+    private Course specificCourse;
 
     public SpecificClassScreen(Course course){
         specificCourse = course;
         initializeFrame();
-        adjustComponents();
+        setupComponents();
         loadVariableData(course);
         windowListener();
     }
-    public static Course getSpecificCourse() {
-        return specificCourse;
-    }
 
     private void initializeFrame() {
-        classFrame = new JFrame();
-        classFrame.setSize(1920, 1080);
-        classFrame.setVisible(true);
-        classFrame.setTitle("MnM Uni Planner");
-        classFrame.setLocationRelativeTo(null);
-        classFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        classFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        classFrame.add(parentPanel);
-        classFrame.setContentPane(parentPanel);
+        setSize(1920, 1080);
+        setVisible(true);
+        setTitle("MnM Uni Planner");
+        setLocationRelativeTo(null);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        add(parentPanel);
+        setContentPane(parentPanel);
     }
 
-    private void adjustComponents(){
+    private void setIcon(JButton button, String filename, int xSpacing){
+        button.setIcon(new ImageIcon(filename));
+        button.setBorder(new EmptyBorder(0,0,0,xSpacing));
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        button.addActionListener(this);
+    }
+    private void setupComponents(){
+        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 27));
+        UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 27));
+
         // Add spacing around panels
         borderPanel.setBorder(new EmptyBorder(50,75,50,75));
 
         // Add spacing around JLabels
         bottomPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
         topPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
-        header.setBorder(new EmptyBorder(50, 20, 50, 20));
+        header.setBorder(new EmptyBorder(40, 20, 40, 20));
+
+        // Set icons
+        setIcon(yourWorkIcon, "your work icon.png",0);
+        setIcon(calculatorIcon, "calculator icon.png",0);
+        setIcon(backButton, "back button icon.png",30);
 
         // Set background colours for buttons
-        backButton.setBackground(Color.LIGHT_GRAY);
         yourWorkButton.setBackground(Color.LIGHT_GRAY);
         calculateAverageButton.setBackground(Color.LIGHT_GRAY);
 
-        // Set backButton size
-        backButton.setPreferredSize(new Dimension(180, 50));
-
-        // Add listeners
-        backButton.addActionListener(this);
+        // Add regular button listeners
         yourWorkButton.addActionListener(this);
         calculateAverageButton.addActionListener(this);
     }
@@ -86,21 +93,19 @@ public class SpecificClassScreen implements ActionListener {
         double averageRounded=Math.round(average * 100) / 100.0;
 
         // Display a dialog with the calculated average
-        JOptionPane.showMessageDialog(null, "Average Score for " + specificCourse.getName() + ": " + averageRounded+"%");
+        JOptionPane.showMessageDialog(null, "Average Score for " + specificCourse.getName() + ": " + averageRounded+"%", "Course Average", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void windowListener(){
-        classFrame.addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
-                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
                 // Ask user to confirm exit when clicking exit button
-                int exitResponse = JOptionPane.showConfirmDialog(classFrame, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                int exitResponse = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if(exitResponse == JOptionPane.YES_OPTION){
                     // If user confirms exit, save data before closing window
                     FileOperations.saveData();
-                    classFrame.dispose();
+                    dispose();
                 }
             }
         });
@@ -111,14 +116,14 @@ public class SpecificClassScreen implements ActionListener {
         if(e.getSource() == backButton) {
             // Go to ClassesScreen
             new ClassesScreen();
-            classFrame.dispose();
+            dispose();
         }
-        else if(e.getSource() == yourWorkButton){;
+        else if(e.getSource() == yourWorkButton || e.getSource() == yourWorkIcon){;
             // Go to YourWorkScreen
             new YourWorkScreen(specificCourse);
-            classFrame.dispose();
+            dispose();
         }
-        else if(e.getSource() == calculateAverageButton){
+        else if(e.getSource() == calculateAverageButton || e.getSource() == calculatorIcon){
             calculateAndDisplayAverage();
         }
     }
