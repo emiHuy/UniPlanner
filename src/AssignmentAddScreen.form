@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="AssignmentAddScreen">
-  <grid id="27dc6" binding="project" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="parentPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="987" height="638"/>
@@ -178,7 +178,7 @@
                       <text value=" Mark:"/>
                     </properties>
                   </component>
-                  <component id="a6809" class="javax.swing.JTextField" binding="assignmentNameField">
+                  <component id="a6809" class="javax.swing.JTextField" binding="nameField">
                     <constraints>
                       <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -188,7 +188,7 @@
                       <font name="Courier New" size="48"/>
                     </properties>
                   </component>
-                  <component id="81466" class="javax.swing.JTextField" binding="dueDateField">
+                  <component id="81466" class="javax.swing.JTextField" binding="dateField">
                     <constraints>
                       <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>

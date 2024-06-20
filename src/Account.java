@@ -1,15 +1,12 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Account {
     private String username;
     private String password;
     private String name;
     private ArrayList<Course> courseList = new ArrayList<>();
+    private ArrayList<Activity> activityList = new ArrayList<>();
     private static ArrayList<Account> accountsList = new ArrayList<>();
-    private static Map<String, String> calendarData;
-
 
     public Account(String username, String password, String name){
         this.username = username;
@@ -38,9 +35,18 @@ public class Account {
         return new ArrayList<Course>(courseList);
     }
 
+    public ArrayList<Activity> getActivityList(){
+        return new ArrayList<Activity>(activityList);
+    }
+
     public void addCourse(Course course){
         courseList.add(course);
     }
+
+    public void addActivity(Activity activity){
+        activityList.add(activity);
+    }
+
     public void bubbleSortCourseList() {
         int n = courseList.size();
         for (int i = 0; i < n - 1; i++) {
@@ -52,12 +58,5 @@ public class Account {
                 }
             }
         }
-    }
-    public void updateCalendarData(Map<String, String> saveData){
-        calendarData = new HashMap<>(saveData);
-    }
-
-    public Map<String, String> getCalendarData(){
-        return new HashMap<>(calendarData);
     }
 }

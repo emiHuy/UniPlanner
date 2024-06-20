@@ -157,6 +157,11 @@ public class ClassesScreen extends JFrame implements ActionListener{
         double courseAverage;
         int totalCourses = 0;
 
+        if(HomeScreen.userAccount.getCourseList().size() == 0){
+            JOptionPane.showMessageDialog(null, "No courses have been added yet.", "Overall Average", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         // Iterate over all courses
         for (Course course : HomeScreen.userAccount.getCourseList()) {
             courseAverage = course.calculateAverageScore();

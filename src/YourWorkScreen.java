@@ -24,7 +24,6 @@ public class YourWorkScreen extends JFrame implements ActionListener{
         initializeFrame();
         adjustComponents();
         setupButtons();
-        //setupTable();
         populateTable();
         windowListener();
     }

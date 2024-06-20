@@ -79,7 +79,7 @@ public class SpecificClassScreen extends JFrame implements ActionListener {
         double averageRounded = Math.round(average * 100) / 100.0;
 
         if(average == -1){
-            JOptionPane.showMessageDialog(this, "No evaluations added to this course yet.", "Course Average", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No evaluations have been added to this course yet.", "Course Average", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             // Display a dialog with the calculated average
