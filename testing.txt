@@ -1,3 +1,0 @@
-activity|,|2024-7-2|.|
-course1, code: eval1, 2024-6-20, 95.0;eval2, 2024-6-21, 89.0;
-course2, code2: eval1, 2024-6-20, 87.0;

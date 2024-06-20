@@ -31,7 +31,7 @@ public class FileOperations {
                 year = activity.getDate().getYear() + 1900;
                 month = activity.getDate().getMonth() + 1;
                 day = activity.getDate().getDate();
-                buffWrite.write(activity.getName() + "|,|" + year + "-" + month + "-" + day+"|.|");
+                buffWrite.write(activity.getName() + ", " + year + "-" + month + "-" + day+";");
                 }
             buffWrite.newLine();
 
@@ -189,13 +189,13 @@ public class FileOperations {
     }
 
     private static void readActivities(String line, Account userAccount){
-        String[] activityList = line.split("\\|\\.\\|");
+        String[] activityList = line.split(";");
         String[] splitEntry;
         String name;
         Date date;
         int count = 0;
         for(String activity: activityList){
-            splitEntry = activityList[count++].split("\\|\\,\\|");
+            splitEntry = activityList[count++].split(", ");
             name = splitEntry[0];
             date = readDate(splitEntry[1]);
             userAccount.addActivity(new Activity(name, date));

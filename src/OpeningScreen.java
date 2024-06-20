@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.border.EmptyBorder;
@@ -177,9 +180,16 @@ public class OpeningScreen extends JFrame implements ActionListener{
                 // If valid, create new Account object with register info
                 Account userAccount = new Account(username, password, name);
                 // Go to home screen
+                initializeActivityData(userAccount);
                 new HomeScreen(userAccount);
                 dispose();
             }
         }
+    }
+
+    private void initializeActivityData(Account userAccount){
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        userAccount.addActivity(new Activity("Created account", date));
     }
 }
