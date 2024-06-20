@@ -10,11 +10,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class AssignmentAddScreen extends JFrame implements ActionListener {
-    private JPanel project;
+    private JPanel parentPanel;
     private JButton backButton;
     private JButton addButton;
-    private JTextField assignmentNameField;
-    private JTextField dueDateField;
+    private JTextField nameField;
+    private JTextField dateField;
     private JTextField markField;
     private JLabel header;
     private Course specificCourse;
@@ -28,9 +28,9 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
     }
 
     private void initializeFrame() {
-        add(project);
+        add(parentPanel);
         setSize(1920, 1080);
-        setContentPane(project);
+        setContentPane(parentPanel);
         setVisible(true);
         setTitle("Your Work Screen");
         setLocationRelativeTo(null);
@@ -55,8 +55,8 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
     // method to read test from fields
     private void collectInput() {
         // Collect user input from text fields
-        String evaluationName = assignmentNameField.getText().trim();
-        String evaluationDateStr = dueDateField.getText().trim();
+        String evaluationName = nameField.getText().trim();
+        String evaluationDateStr = dateField.getText().trim();
         String evaluationScoreStr = markField.getText().trim();
 
         double evaluationScore;
@@ -104,7 +104,7 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
         }
     }
 
-    // Method to check if the date is valid
+    // Method to check if the date is valid and get date value
     private Date convertDate(String dateStr) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);

@@ -2,6 +2,7 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +27,11 @@ public class FileOperations {
 
             BufferedWriter buffWrite = new BufferedWriter(fileWrite);
 
-            for(Map.Entry<String,String> entry: HomeScreen.userAccount.getCalendarData().entrySet()){
-                buffWrite.write(entry.getKey() + "|,|" + entry.getValue()+"|.|");
+            for(Activity activity: HomeScreen.userAccount.getActivityList()){
+                year = activity.getDate().getYear() + 1900;
+                month = activity.getDate().getMonth() + 1;
+                day = activity.getDate().getDate();
+                buffWrite.write(activity.getName() + ", " + year + "-" + month + "-" + day+";");
                 }
             buffWrite.newLine();
 
@@ -110,7 +114,7 @@ public class FileOperations {
             String[] courseEvaluations;
 
             line = buffRead.readLine();
-            readCalendarData(line, userAccount);
+            readActivities(line, userAccount);
 
             // Read data from user-specific text file, line by line
             while((line = buffRead.readLine()) != null){
@@ -163,7 +167,7 @@ public class FileOperations {
             // Split string into parts to retrieve evaluation data
             evaluationInfo = evaluationsSplit[count++].split(", ");
             name = evaluationInfo[0];
-            date = readEvalDate(evaluationInfo[1]);
+            date = readDate(evaluationInfo[1]);
             mark = Double.parseDouble(evaluationInfo[2]);
             // With evaluation data, create a new Evaluation object
             Evaluation eval = new Evaluation(name, mark, date);
@@ -171,7 +175,7 @@ public class FileOperations {
         }
     }
 
-    private static Date readEvalDate(String dateAsString){
+    private static Date readDate(String dateAsString){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try{
@@ -184,25 +188,17 @@ public class FileOperations {
         return date;
     }
 
-    private static void readCalendarData(String line, Account userAccount){
-        Map<String, String> calendarData = new HashMap<>();
-        String[] entryList = line.split("\\|\\.\\|");
+    private static void readActivities(String line, Account userAccount){
+        String[] activityList = line.split(";");
         String[] splitEntry;
-        String entryName;
-        String entryText;
+        String name;
+        Date date;
         int count = 0;
-        for(String entry: entryList){
-            splitEntry = entryList[count++].split("\\|\\,\\|");
-            if(splitEntry.length == 1){
-                entryName = splitEntry[0];
-                calendarData.put(entryName, "");
-            }
-            else{
-                entryName = splitEntry[0];
-                entryText = splitEntry[1];
-                calendarData.put(entryName, entryText);
-            }
+        for(String activity: activityList){
+            splitEntry = activityList[count++].split(", ");
+            name = splitEntry[0];
+            date = readDate(splitEntry[1]);
+            userAccount.addActivity(new Activity(name, date));
         }
-        userAccount.updateCalendarData(calendarData);
     }
 }

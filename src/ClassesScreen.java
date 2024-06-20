@@ -7,8 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
-public class ClassesScreen implements ActionListener{
-    private JFrame classesFrame;
+public class ClassesScreen extends JFrame implements ActionListener{
     private JPanel viewClassesPanel;
     private JButton calculateAvgButton;
     private JButton addClassButton;
@@ -26,14 +25,13 @@ public class ClassesScreen implements ActionListener{
     }
 
     private void initializeFrame() {
-        classesFrame = new JFrame();
-        classesFrame.setSize(1920, 1080);
-        classesFrame.setVisible(true);
-        classesFrame.setTitle("MnM Uni Planner");
-        classesFrame.setLocationRelativeTo(null);
-        classesFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        classesFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        classesFrame.setLayout(new BorderLayout());
+        setSize(1920, 1080);
+        setVisible(true);
+        setTitle("MnM Uni Planner");
+        setLocationRelativeTo(null);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setLayout(new BorderLayout());
     }
 
     private void createPlannerName(JPanel panel){
@@ -48,7 +46,7 @@ public class ClassesScreen implements ActionListener{
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         topPanel.setBackground(Color.BLACK);
         createPlannerName(topPanel);
-        classesFrame.add(topPanel, BorderLayout.NORTH);
+        add(topPanel, BorderLayout.NORTH);
     }
 
     private JButton createButton (String text, int xSize, int ySize, Color color){
@@ -65,7 +63,7 @@ public class ClassesScreen implements ActionListener{
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         bottomPanel.setBackground(Color.BLACK);
         createPlannerName(bottomPanel);
-        classesFrame.add(bottomPanel, BorderLayout.SOUTH);
+        add(bottomPanel, BorderLayout.SOUTH);
     }
 
     private void setupCentralPanel(){
@@ -76,7 +74,7 @@ public class ClassesScreen implements ActionListener{
         JPanel borderPanel = new JPanel(new BorderLayout());
         borderPanel.setBorder(new EmptyBorder(50,75,50,75));
         borderPanel.setBackground(Color.BLACK);
-        classesFrame.add(borderPanel, BorderLayout.CENTER);
+        add(borderPanel, BorderLayout.CENTER);
 
         // Sub-panel for header
         JPanel subTopPanel = new JPanel(new GridLayout());
@@ -159,6 +157,11 @@ public class ClassesScreen implements ActionListener{
         double courseAverage;
         int totalCourses = 0;
 
+        if(HomeScreen.userAccount.getCourseList().size() == 0){
+            JOptionPane.showMessageDialog(null, "No courses have been added yet.", "Overall Average", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         // Iterate over all courses
         for (Course course : HomeScreen.userAccount.getCourseList()) {
             courseAverage = course.calculateAverageScore();
@@ -178,15 +181,15 @@ public class ClassesScreen implements ActionListener{
     }
 
     private void windowListener(){
-        classesFrame.addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 // Ask user to confirm exit when clicking exit button
-                int exitResponse = JOptionPane.showConfirmDialog(classesFrame, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                int exitResponse = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if(exitResponse == JOptionPane.YES_OPTION){
                     // If user confirms exit, save data before closing window
                     FileOperations.saveData();
-                    classesFrame.dispose();
+                    dispose();
                 }
             }
         });
@@ -196,7 +199,7 @@ public class ClassesScreen implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == backButton){
             // Go to home screen
-            classesFrame.dispose();
+            dispose();
             new HomeScreen(HomeScreen.userAccount);
         }
         else if(e.getSource() == calculateAvgButton){
@@ -205,7 +208,7 @@ public class ClassesScreen implements ActionListener{
         }
         else if(e.getSource() == addClassButton){
             // Go to AddClassScreen
-            classesFrame.dispose();
+            dispose();
             new AddClassScreen();
         }
         else{
@@ -215,7 +218,7 @@ public class ClassesScreen implements ActionListener{
             Course course = linearSearchCourse(button.getText());
             // Go to corresponding course screen
             new SpecificClassScreen(course);
-            classesFrame.dispose();
+            dispose();
         }
     }
 }

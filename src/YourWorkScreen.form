@@ -139,6 +139,7 @@
                     </constraints>
                     <properties>
                       <font name="Courier New" size="24" style="1"/>
+                      <verifyInputWhenFocusTarget value="true"/>
                     </properties>
                     <border type="none"/>
                     <children>

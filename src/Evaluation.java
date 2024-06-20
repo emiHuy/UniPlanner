@@ -1,7 +1,7 @@
 
 import java.util.Date;
 
-public class Evaluation {
+public class Evaluation{
     public String evaluationName;
     private double evaluationScore;
     private Date evaluationDate;

@@ -10,7 +10,6 @@ public class HomeScreen extends JFrame implements ActionListener{
     private JButton classesButton;
     private JButton calendarButton;
     private JButton studyGuideButton;
-    private JButton xButton;
     private JLabel welcomeLabel;
     private JButton classesIconButton;
     private JButton calendarIconButton;
@@ -21,7 +20,6 @@ public class HomeScreen extends JFrame implements ActionListener{
         this.userAccount = userAccount;
         initializeFrame();
         createButtons();
-        addActionListeners();
         welcome();
         windowListener();
     }
@@ -37,40 +35,24 @@ public class HomeScreen extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
+    private void setButton(JButton button, int bottomSpacing){
+        button.setBorder(new EmptyBorder(0,0,bottomSpacing,0));
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+        button.addActionListener(this);
+    }
+
     private void createButtons(){
         classesIconButton.setIcon(new ImageIcon("classes icon.png"));
         calendarIconButton.setIcon(new ImageIcon("calendar icon.png"));
         studyGuideIconButton.setIcon(new ImageIcon("study guide icon.png"));
 
-        classesIconButton.setBorder(new EmptyBorder(0,0,50,0));
-        calendarIconButton.setBorder(new EmptyBorder(0,0,50,0));
-        studyGuideIconButton.setBorder(new EmptyBorder(0,0,50,0));
-        classesButton.setBorder(new EmptyBorder(0,0,0,0));
-        calendarButton.setBorder(new EmptyBorder(0,0,0,0));
-        studyGuideButton.setBorder(new EmptyBorder(0,0,0,0));
-
-        classesIconButton.setFocusPainted(false);
-        calendarIconButton.setFocusPainted(false);
-        studyGuideIconButton.setFocusPainted(false);
-        classesButton.setFocusPainted(false);
-        calendarButton.setFocusPainted(false);
-        studyGuideButton.setFocusPainted(false);
-
-        classesIconButton.setContentAreaFilled(false);
-        calendarIconButton.setContentAreaFilled(false);
-        studyGuideIconButton.setContentAreaFilled(false);
-        classesButton.setContentAreaFilled(false);
-        calendarButton.setContentAreaFilled(false);
-        studyGuideButton.setContentAreaFilled(false);
-    }
-
-    private void addActionListeners(){
-        classesButton.addActionListener(this);
-        calendarButton.addActionListener(this);
-        studyGuideButton.addActionListener(this);
-        classesIconButton.addActionListener(this);
-        calendarIconButton.addActionListener(this);
-        studyGuideIconButton.addActionListener(this);
+        setButton(classesIconButton, 50);
+        setButton(calendarIconButton, 50);
+        setButton(studyGuideIconButton, 50);
+        setButton(classesButton, 0);
+        setButton(calendarButton, 0);
+        setButton(studyGuideButton, 0);
     }
 
     private void welcome(){
@@ -103,7 +85,7 @@ public class HomeScreen extends JFrame implements ActionListener{
         }
         else if(e.getSource() == calendarButton || e.getSource() == calendarIconButton){
             // Go to Calendar screen
-            new Calendar(userAccount.getCalendarData());
+            new CalendarScreen();
             dispose();
         }
         else if(e.getSource() == studyGuideButton || e.getSource() == studyGuideIconButton){

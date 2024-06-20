@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.border.EmptyBorder;
@@ -177,29 +180,16 @@ public class OpeningScreen extends JFrame implements ActionListener{
                 // If valid, create new Account object with register info
                 Account userAccount = new Account(username, password, name);
                 // Go to home screen
-                initializeCalendarData(userAccount);
+                initializeActivityData(userAccount);
                 new HomeScreen(userAccount);
                 dispose();
             }
         }
     }
 
-    public void initializeCalendarData(Account account){
-        Map<String, String> calendarData = new HashMap<>();
-        calendarData.put("TextArea1", "");
-        calendarData.put("TextArea2", "");
-        calendarData.put("TextArea3", "");
-        calendarData.put("TextArea4", "");
-        calendarData.put("TextArea5", "");
-        calendarData.put("TextArea6", "");
-        calendarData.put("TextArea7", "");
-        calendarData.put("TextArea8", "");
-        calendarData.put("TextArea9", "");
-        calendarData.put("TextArea10", "");
-        calendarData.put("TextArea11", "");
-        calendarData.put("TextArea12", "");
-        calendarData.put("TextArea13", "");
-        calendarData.put("TextArea14", "");
-        account.updateCalendarData(calendarData);
+    private void initializeActivityData(Account userAccount){
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        userAccount.addActivity(new Activity("Created account", date));
     }
 }
