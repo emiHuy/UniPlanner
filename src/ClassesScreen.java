@@ -38,7 +38,7 @@ public class ClassesScreen implements ActionListener{
 
     private void createPlannerName(JPanel panel){
         JLabel plannerName = new JLabel("MnM Uni Planner");
-        plannerName.setFont(new Font("Courier New", Font.PLAIN, 16));
+        plannerName.setFont(new Font("Arial", Font.PLAIN, 16));
         plannerName.setForeground(new Color(0,229,31));
         plannerName.setBorder(new EmptyBorder(25,25,25,25));
         panel.add(plannerName);

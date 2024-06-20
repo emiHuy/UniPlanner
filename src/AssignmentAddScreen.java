@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +16,14 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
     private JTextField assignmentNameField;
     private JTextField dueDateField;
     private JTextField markField;
+    private JLabel header;
     private Course specificCourse;
 
 
     public AssignmentAddScreen(Course course) {
         specificCourse = course;
         initializeFrame();
-        addActionListeners();
+        setupComponents();
         windowListener();
     }
 
@@ -36,80 +38,84 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
-    private void addActionListeners() {
+    private void setupComponents() {
+        header.setBorder(new EmptyBorder(40,0,40,0));
+
+        addButton.setBackground(Color.LIGHT_GRAY);
         addButton.addActionListener(this);
+
+        backButton.setIcon(new ImageIcon("back button icon.png"));
+        backButton.setBorder(new EmptyBorder(20,0,20,30));
+        backButton.setFocusPainted(false);
+        backButton.setContentAreaFilled(false);
         backButton.addActionListener(this);
     }
-    private boolean isDuplicateAssignmentName(String assignmentName) {
-        for (Evaluation evaluation : specificCourse.getEvaluations()) {
-            if (evaluation.getEvaluationName().equals(assignmentName)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     // method to read test from fields
-    private boolean collectInput() {
+    private void collectInput() {
         // Collect user input from text fields
         String evaluationName = assignmentNameField.getText().trim();
         String evaluationDateStr = dueDateField.getText().trim();
         String evaluationScoreStr = markField.getText().trim();
-        // If any fields are empty, display error message and prompt
-        if (evaluationName.isEmpty() || evaluationDateStr.isEmpty() || evaluationScoreStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (!evaluationName.matches("^[a-zA-Z0-9\\-]*$")){
-            JOptionPane.showMessageDialog(this, "Input may only consist of letters, numbers, and/or dashes.", "Input Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        // If data is invalid, display error message and prompt
-        if (!isValidDate(evaluationDateStr)) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid date in the format yyyy-MM-dd.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        try {
-            Date evaluationDate = new SimpleDateFormat("yyyy-MM-dd").parse(evaluationDateStr);
-            double evaluationScore = Double.parseDouble(evaluationScoreStr);
 
+        double evaluationScore;
+        Date evaluationDate = convertDate(evaluationDateStr);
+
+        for (Evaluation evaluation : specificCourse.getEvaluations()) {
+            if (evaluation.getEvaluationName().equals(evaluationName)) {
+                JOptionPane.showMessageDialog(this, "Another assignment with this name already exists for this course.", "Duplicate Assignment", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        try {
+            evaluationScore = Double.parseDouble(evaluationScoreStr);
             // Check if mark is valid
             if (evaluationScore < 0 || evaluationScore > 100) {
                 throw new NumberFormatException("Mark out of range");
             }
-            if (isDuplicateAssignmentName(evaluationName)) {
-                JOptionPane.showMessageDialog(this, "Another assignment with this name already exists for this course.", "Duplicate Assignment", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-
-            System.out.println("Assignment Name: " + evaluationName);
-            System.out.println("Due Date: " + evaluationDate);
-            System.out.println("Mark: " + evaluationScore);
-
-            // Create a new evaluation object
-            Evaluation newEvaluation = new Evaluation(evaluationName, evaluationScore, evaluationDate);
-            // Add the new evaluation to the specific course
-            specificCourse.addEvaluation(newEvaluation);
-            return true;
-            // Transition to YourWorkScreen after successful input collection
-            //new YourWorkScreen(specificCourse);
-            //dispose();
-        } catch (NumberFormatException | ParseException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid mark between 0 and 100.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+            return;
+        }
+
+        // If any fields are empty, display error message and prompt
+        if (evaluationName.isEmpty() || evaluationDateStr.isEmpty() || evaluationScoreStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if (!evaluationName.matches("^[a-zA-Z0-9\\-\\s]*$")){
+            JOptionPane.showMessageDialog(this, "Input may only consist of letters, numbers, spaces, and/or dashes.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        // If data is invalid, display error message and prompt
+        else if (evaluationDate == null) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid date in the format yyyy-MM-dd.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            // Create a new evaluation object
+            Evaluation evaluation = new Evaluation(evaluationName, evaluationScore, evaluationDate);
+            // Add the new evaluation to the specific course
+            specificCourse.addEvaluation(evaluation);
+            new YourWorkScreen(specificCourse);
+            dispose();
         }
     }
 
     // Method to check if the date is valid
-    private boolean isValidDate(String dateStr) {
+    private Date convertDate(String dateStr) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
+        Date date;
         try {
             // Convert date from string to date type
-            Date date = sdf.parse(dateStr);
-            return true;
+            date = sdf.parse(dateStr);
         } catch (ParseException e) {
-            return false;
+            return null;
         }
+        return date;
     }
 
     private void windowListener() {
@@ -133,15 +139,12 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addButton) {
             // Collect inputted assignment information
-            if (collectInput()) {
-                new YourWorkScreen(specificCourse);
-                dispose();
-            }
-        }else if (e.getSource() == backButton) {
+            collectInput();
+        }
+        else if (e.getSource() == backButton) {
                 // Go to YourWorkScreen
                 new YourWorkScreen(specificCourse);
                 dispose();
             }
         }
     }
-

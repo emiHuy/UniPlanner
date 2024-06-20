@@ -56,7 +56,7 @@ public class SpecificClassScreen extends JFrame implements ActionListener {
         // Add spacing around JLabels
         bottomPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
         topPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
-        header.setBorder(new EmptyBorder(50, 20, 50, 20));
+        header.setBorder(new EmptyBorder(40, 20, 40, 20));
 
         // Set icons
         setIcon(yourWorkIcon, "your work icon.png",0);

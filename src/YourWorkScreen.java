@@ -41,7 +41,7 @@ public class YourWorkScreen extends JFrame implements ActionListener{
 
     private void adjustComponents(){
         header.setText("Your " + specificCourse.getName() + " Work (" + specificCourse.getCode() + ")");
-        header.setBorder(new EmptyBorder(25, 0, 25, 0));
+        header.setBorder(new EmptyBorder(40, 0, 40, 0));
     }
 
     private void setupButtons(){
@@ -52,7 +52,7 @@ public class YourWorkScreen extends JFrame implements ActionListener{
         addAssignmentButton.addActionListener(this);
 
         backButton.setIcon(new ImageIcon("back button icon.png"));
-        backButton.setBorder(new EmptyBorder(20,0,20,20));
+        backButton.setBorder(new EmptyBorder(20,0,20,30));
         backButton.setFocusPainted(false);
         backButton.setContentAreaFilled(false);
         backButton.addActionListener(this);
@@ -102,9 +102,9 @@ public class YourWorkScreen extends JFrame implements ActionListener{
         // Set the table model to the JTable
         table.setModel(model);
 
-        table.getColumn("Evaluation").setPreferredWidth(1500);
+        table.getColumn("Evaluation").setPreferredWidth(1400);
         table.getColumn("Score").setPreferredWidth(550);
-        table.getColumn("Date").setPreferredWidth(1000);
+        table.getColumn("Date").setPreferredWidth(1100);
 
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer() {
             @Override
@@ -117,6 +117,10 @@ public class YourWorkScreen extends JFrame implements ActionListener{
 
         // Apply the renderer to all columns
         table.setDefaultRenderer(Object.class, cellRenderer);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.getColumn("Score").setCellRenderer(centerRenderer);
     }
 
     private ArrayList<Evaluation> mergeSortEvaluations(ArrayList<Evaluation> evaluations) {

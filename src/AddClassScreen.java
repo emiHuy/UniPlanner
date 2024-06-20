@@ -38,19 +38,21 @@ public class AddClassScreen extends JFrame implements ActionListener{
     private void adjustComponents(){
         // Add spacing around panels
         borderPanel.setBorder(new EmptyBorder(50,75,50,75));
-        buttonPanel.setBorder(new EmptyBorder(25,0,25,0));
+        buttonPanel.setBorder(new EmptyBorder(25,0,70,0));
 
         // Add spacing around JLabels
         bottomPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
         topPlannerName.setBorder(new EmptyBorder(10, 20, 10, 20));
-        header.setBorder(new EmptyBorder(25, 20, 25, 20));
+        header.setBorder(new EmptyBorder(40, 20, 40, 20));
 
-        // Set background colours for buttons
+        // Set add class button
         addClassButton.setBackground(Color.LIGHT_GRAY);
-        backButton.setBackground(Color.LIGHT_GRAY);
 
-        // Set backButton size
-        backButton.setPreferredSize(new Dimension(180, 50));
+        // Set backButton
+        backButton.setIcon(new ImageIcon("back button icon.png"));
+        backButton.setBorder(new EmptyBorder(20, 0, 20,30));
+        backButton.setFocusPainted(false);
+        backButton.setContentAreaFilled(false);
 
         // Add listeners
         backButton.addActionListener(this);
@@ -82,7 +84,7 @@ public class AddClassScreen extends JFrame implements ActionListener{
         if(courseName.isEmpty() || courseCode.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
         }
-        else if(!courseName.matches("^[a-zA-Z0-9\\-]*$") || !courseCode.matches("^[a-zA-Z0-9\\-]*$")){
+        else if(!courseName.matches("^[a-zA-Z0-9\\-\\s]*$") || !courseCode.matches("^[a-zA-Z0-9\\-\\s]*$")){
             JOptionPane.showMessageDialog(this, "Input may only consist of letters, numbers, and/or dashes.", "Input Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{

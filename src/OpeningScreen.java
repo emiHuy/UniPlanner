@@ -34,7 +34,7 @@ public class OpeningScreen extends JFrame implements ActionListener{
     }
 
     private void intializeFrame(){
-        setSize(950, 1100);
+        setSize(950, 1080);
         add(startPanel);
         setContentPane(startPanel);
         setVisible(true);
@@ -172,6 +172,7 @@ public class OpeningScreen extends JFrame implements ActionListener{
             String confirmPassword = confirmPasswordField.getText();
             // Check register info validity
             boolean valid = checkRegisterInfo(name, username, password, confirmPassword);
+
             if(valid){
                 // If valid, create new Account object with register info
                 Account userAccount = new Account(username, password, name);
