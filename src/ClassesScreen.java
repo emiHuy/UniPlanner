@@ -67,6 +67,7 @@ public class ClassesScreen implements ActionListener{
         createPlannerName(bottomPanel);
         classesFrame.add(bottomPanel, BorderLayout.SOUTH);
     }
+
     private void setupCentralPanel(){
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 27));
         UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 27));
@@ -121,7 +122,6 @@ public class ClassesScreen implements ActionListener{
     }
 
     private void createClassButtons(){
-
         // Sort the course list alphabetically
         userAccount.bubbleSortCourseList();
         //Retrieve courses
@@ -156,12 +156,16 @@ public class ClassesScreen implements ActionListener{
     private void calculateAndDisplayAverage() {
         // Calculate the average score of all classes combined
         double totalScore = 0;
+        double courseAverage;
         int totalCourses = 0;
 
         // Iterate over all courses
         for (Course course : HomeScreen.userAccount.getCourseList()) {
-            totalScore += course.calculateAverageScore();
-            totalCourses++;
+            courseAverage = course.calculateAverageScore();
+            if(courseAverage != -1){
+                totalScore += courseAverage;
+                totalCourses++;
+            }
         }
 
         // Calculate the average score

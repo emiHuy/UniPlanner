@@ -24,7 +24,6 @@ public class SpecificClassScreen extends JFrame implements ActionListener {
         specificCourse = course;
         initializeFrame();
         setupComponents();
-        loadVariableData(course);
         windowListener();
     }
 
@@ -50,6 +49,8 @@ public class SpecificClassScreen extends JFrame implements ActionListener {
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 27));
         UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 27));
 
+        header.setText(specificCourse.getName() + "(" + specificCourse.getCode() + ")");
+
         // Add spacing around panels
         borderPanel.setBorder(new EmptyBorder(50,75,50,75));
 
@@ -72,28 +73,18 @@ public class SpecificClassScreen extends JFrame implements ActionListener {
         calculateAverageButton.addActionListener(this);
     }
 
-    private void loadVariableData(Course course){
-        header.setText(course.getName() + "(" + course.getCode() + ")");
-    }
-
-    // Method to calculate and display the average score for the specific course
+    // Method to retrieve and display the average score for the specific course
     private void calculateAndDisplayAverage() {
-        // Retrieve evaluations for the specific course
-        ArrayList<Evaluation> evaluations = specificCourse.getEvaluations();
-        double totalScore = 0;
-        int count = evaluations.size();
+        double average = specificCourse.calculateAverageScore();
+        double averageRounded = Math.round(average * 100) / 100.0;
 
-        // Calculate total score
-        for (Evaluation evaluation : evaluations) {
-            totalScore += evaluation.getEvaluationScore();
+        if(average == -1){
+            JOptionPane.showMessageDialog(this, "No evaluations added to this course yet.", "Course Average", JOptionPane.INFORMATION_MESSAGE);
         }
-
-        // Calculate average
-        double average = count > 0 ? totalScore / count : 0;
-        double averageRounded=Math.round(average * 100) / 100.0;
-
-        // Display a dialog with the calculated average
-        JOptionPane.showMessageDialog(null, "Average Score for " + specificCourse.getName() + ": " + averageRounded+"%", "Course Average", JOptionPane.INFORMATION_MESSAGE);
+        else{
+            // Display a dialog with the calculated average
+            JOptionPane.showMessageDialog(this, "Average Score for " + specificCourse.getName() + ": " + averageRounded+"%", "Course Average", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private void windowListener(){
