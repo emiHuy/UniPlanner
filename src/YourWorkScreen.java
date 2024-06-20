@@ -11,6 +11,7 @@ public class YourWorkScreen extends JFrame implements ActionListener{
     private JButton addAssignmentButton;
     private JPanel yourWork;
     private Course specificCourse;
+
     public YourWorkScreen(Course course){
         specificCourse = course;
         initializeFrame();
@@ -101,13 +102,12 @@ public class YourWorkScreen extends JFrame implements ActionListener{
         return merged;
     }
 
-
     private void windowListener(){
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
-                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 27));
+                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 27));
                 // Ask user to confirm exit when clicking exit button
                 int exitResponse = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if(exitResponse == JOptionPane.YES_OPTION){

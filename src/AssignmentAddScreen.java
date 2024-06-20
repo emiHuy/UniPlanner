@@ -85,7 +85,7 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
             // Create a new evaluation object
             Evaluation newEvaluation = new Evaluation(evaluationName, evaluationScore, evaluationDate);
             // Add the new evaluation to the specific course
-            SpecificClassScreen.getSpecificCourse().addEvaluation(newEvaluation);
+            specificCourse.addEvaluation(newEvaluation);
             return true;
             // Transition to YourWorkScreen after successful input collection
             //new YourWorkScreen(specificCourse);
@@ -113,8 +113,8 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
-                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
+                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 27));
+                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 27));
                 // Ask user to confirm exit when clicking exit button
                 int exitResponse = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (exitResponse == JOptionPane.YES_OPTION) {

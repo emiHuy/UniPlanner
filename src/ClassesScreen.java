@@ -51,18 +51,6 @@ public class ClassesScreen implements ActionListener{
         classesFrame.add(topPanel, BorderLayout.NORTH);
     }
 
-    private void setupBottomPanel(){
-        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-
-        backButton = createButton("Back", 180, 50, Color.LIGHT_GRAY);
-        bottomPanel.add(backButton);
-
-        bottomPanel.setBackground(Color.BLACK);
-        createPlannerName(bottomPanel);
-
-        classesFrame.add(bottomPanel, BorderLayout.SOUTH);
-    }
-
     private JButton createButton (String text, int xSize, int ySize, Color color){
         JButton button = new JButton(text);
         button.setForeground(Color.BLACK);
@@ -73,7 +61,15 @@ public class ClassesScreen implements ActionListener{
         return button;
     }
 
+    private void setupBottomPanel(){
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        bottomPanel.setBackground(Color.BLACK);
+        createPlannerName(bottomPanel);
+        classesFrame.add(bottomPanel, BorderLayout.SOUTH);
+    }
     private void setupCentralPanel(){
+        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 27));
+        UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 27));
 
         // Main central panel
         JPanel borderPanel = new JPanel(new BorderLayout());
@@ -82,15 +78,33 @@ public class ClassesScreen implements ActionListener{
         classesFrame.add(borderPanel, BorderLayout.CENTER);
 
         // Sub-panel for header
+        JPanel subTopPanel = new JPanel(new GridLayout());
+
+        JPanel leftTopPanel = new JPanel();
+        leftTopPanel.setBackground(new Color(0, 229, 31));
+        subTopPanel.add(leftTopPanel);
+
         JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel("Your Classes This Semester");
-        title.setFont(new Font("Courier New", Font.BOLD, 40));
+        JLabel title = new JLabel("Your Classes");
+        title.setFont(new Font("Courier New", Font.BOLD, 65));
         title.setForeground(Color.BLACK);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setBorder(new EmptyBorder(25, 25, 25, 25));
         titlePanel.setBackground(new Color(0, 229, 31));
         titlePanel.add(title);
-        borderPanel.add(titlePanel, BorderLayout.NORTH);
+        subTopPanel.add(titlePanel);
+
+        JPanel rightTopPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightTopPanel.setBackground(new Color(0, 229, 31));
+        backButton = new JButton();
+        backButton.setIcon(new ImageIcon("back button icon.png"));
+        backButton.setBorder(new EmptyBorder(20,0,0,20));
+        backButton.setFocusPainted(false);
+        backButton.setContentAreaFilled(false);
+        rightTopPanel.add(backButton);
+        subTopPanel.add(rightTopPanel);
+
+        borderPanel.add(subTopPanel, BorderLayout.NORTH);
 
         // Sub-panel for classes display
         viewClassesPanel = new JPanel();
@@ -155,15 +169,13 @@ public class ClassesScreen implements ActionListener{
         double averageScoreRounded= Math.round(averageScore * 100) / 100.0;
 
         // Display the overall average score in JDialog
-        JOptionPane.showMessageDialog(null, "Overall average for all classes combined: " + averageScoreRounded+"%");
+        JOptionPane.showMessageDialog(null, "Overall average for all classes combined: " + averageScoreRounded+"%", "Overall Average", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void windowListener(){
         classesFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
-                UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 24));
                 // Ask user to confirm exit when clicking exit button
                 int exitResponse = JOptionPane.showConfirmDialog(classesFrame, "Are you sure you want to quit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if(exitResponse == JOptionPane.YES_OPTION){
