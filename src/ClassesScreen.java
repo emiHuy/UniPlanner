@@ -101,6 +101,7 @@ public class ClassesScreen implements ActionListener{
         backButton.setBorder(new EmptyBorder(20,0,0,20));
         backButton.setFocusPainted(false);
         backButton.setContentAreaFilled(false);
+        backButton.addActionListener(this);
         rightTopPanel.add(backButton);
         subTopPanel.add(rightTopPanel);
 
