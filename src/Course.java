@@ -28,7 +28,7 @@ public class Course {
 
     public double calculateAverageScore() {
         if (evaluations.isEmpty()) {
-            return 0; // Return 0 if there are no evaluations
+            return -1; // Return 0 if there are no evaluations
         }
 
         double totalScore = 0;

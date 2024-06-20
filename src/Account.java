@@ -60,22 +60,4 @@ public class Account {
     public Map<String, String> getCalendarData(){
         return new HashMap<>(calendarData);
     }
-
-    public void initializeTextAreas(){
-        calendarData = new HashMap<>();
-        calendarData.put("TextArea1", "");
-        calendarData.put("TextArea2", "");
-        calendarData.put("TextArea3", "");
-        calendarData.put("TextArea4", "");
-        calendarData.put("TextArea5", "");
-        calendarData.put("TextArea6", "");
-        calendarData.put("TextArea7", "");
-        calendarData.put("TextArea8", "");
-        calendarData.put("TextArea9", "");
-        calendarData.put("TextArea10", "");
-        calendarData.put("TextArea11", "");
-        calendarData.put("TextArea12", "");
-        calendarData.put("TextArea13", "");
-        calendarData.put("TextArea14", "");
-    }
 }

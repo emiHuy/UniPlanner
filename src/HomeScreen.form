@@ -68,7 +68,7 @@
           <background color="-1707777"/>
           <font name="Courier New" size="44" style="1"/>
           <foreground color="-16718561"/>
-          <text value="StudyGuide"/>
+          <text value="Study Guide"/>
         </properties>
       </component>
       <component id="afdf" class="javax.swing.JButton" binding="classesIconButton">
