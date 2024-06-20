@@ -15,7 +15,6 @@ import java.util.Locale;
 
 public class CalendarScreen extends JFrame implements ActionListener {
     private JPanel parentPanel;
-    private JPanel calendarPanel;
     private JButton box1;
     private JButton box2;
     private JButton box3;
@@ -163,6 +162,7 @@ public class CalendarScreen extends JFrame implements ActionListener {
             for(Course course : courses){
                 for(Evaluation eval : course.getEvaluations()){
                     LocalDate evalDate = eval.getEvaluationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    // Check if date has any evaluations
                     if(evalDate.equals(date)){
                         hasEvaluation = true;
                         break;
@@ -175,6 +175,7 @@ public class CalendarScreen extends JFrame implements ActionListener {
             if(!hasEvaluation){
                 for(Activity activity : activities){
                     LocalDate activityDate = activity.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    // Check if date has any activities
                     if(activityDate.equals(date)){
                         hasActivity = true;
                         break;
@@ -182,6 +183,7 @@ public class CalendarScreen extends JFrame implements ActionListener {
                 }
             }
 
+            // Highlight date if there are any activities or evaluations on it
             if (hasEvaluation || hasActivity) {
                 dayButtons[startIndex].setBackground(new Color(202,229,226)); // Color for evaluations
             }
@@ -194,6 +196,7 @@ public class CalendarScreen extends JFrame implements ActionListener {
     private void updateSidePanel(){
         checkBoxPanel.removeAll();
 
+        // Set side panel header with date
         dayOfWeekLabel.setText(currentDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault()));
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         dateLabel.setText(currentDate.format(dateFormat));
