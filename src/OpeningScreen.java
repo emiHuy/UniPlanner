@@ -152,7 +152,7 @@ public class OpeningScreen extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
             }
             // If valid,
-            if(userAccount != null){
+            else if(userAccount != null){
                 // read and retrieve user's account data from the saved file
                 FileOperations.readAccountData(userAccount);
                 // Go to home screen

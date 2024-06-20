@@ -52,13 +52,16 @@ public class AssignmentAddScreen extends JFrame implements ActionListener {
     // method to read test from fields
     private boolean collectInput() {
         // Collect user input from text fields
-        String evaluationName = assignmentNameField.getText();
-        String evaluationDateStr = dueDateField.getText();
-        String evaluationScoreStr = markField.getText();
+        String evaluationName = assignmentNameField.getText().trim();
+        String evaluationDateStr = dueDateField.getText().trim();
+        String evaluationScoreStr = markField.getText().trim();
         // If any fields are empty, display error message and prompt
         if (evaluationName.isEmpty() || evaluationDateStr.isEmpty() || evaluationScoreStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return false;
+        }
+        if (!evaluationName.matches("^[a-zA-Z0-9\\-]*$")){
+            JOptionPane.showMessageDialog(this, "Input may only consist of letters, numbers, and/or dashes.", "Input Warning", JOptionPane.WARNING_MESSAGE);
         }
         // If data is invalid, display error message and prompt
         if (!isValidDate(evaluationDateStr)) {

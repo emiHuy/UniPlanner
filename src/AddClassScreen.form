@@ -71,7 +71,7 @@
                 <properties>
                   <background color="-16777216"/>
                   <font name="Courier New" size="65" style="1"/>
-                  <text value="Your Classes This Semester"/>
+                  <text value="Your Classes - Add Class"/>
                 </properties>
               </component>
             </children>

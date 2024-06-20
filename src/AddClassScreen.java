@@ -63,8 +63,8 @@ public class AddClassScreen extends JFrame implements ActionListener{
         UIManager.put("OptionPane.buttonFont", new Font("Courier New", Font.BOLD, 27));
 
         // Get user input from text fields
-        String courseName = courseNameField.getText();
-        String courseCode = courseCodeField.getText();
+        String courseName = courseNameField.getText().trim();
+        String courseCode = courseCodeField.getText().trim();
 
         // Check if existing course already has inputted course name or course code
         for(Course course: HomeScreen.userAccount.getCourseList()){
@@ -79,8 +79,11 @@ public class AddClassScreen extends JFrame implements ActionListener{
         }
 
         // Check user input collected from text fields if empty (is invalid)
-        if(courseName.trim().isEmpty() || courseCode.trim().isEmpty()){
+        if(courseName.isEmpty() || courseCode.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Input Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(!courseName.matches("^[a-zA-Z0-9\\-]*$") || !courseCode.matches("^[a-zA-Z0-9\\-]*$")){
+            JOptionPane.showMessageDialog(this, "Input may only consist of letters, numbers, and/or dashes.", "Input Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
             // If valid, create Course object with user input
