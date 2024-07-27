@@ -4,3 +4,4 @@ This program is a simple tool to help students schedule tasks and events in a ca
 
 **Contributors:** Emily (me) and Emma <br />
 **Created on:** IntelliJ (Java Swing)
+**Year created:** 2024
